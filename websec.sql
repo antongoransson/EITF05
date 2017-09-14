@@ -1,5 +1,7 @@
 PRAGMA foreign_keys=OFF;
 DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Items;
 
 PRAGMA foreign_keys=ON;
 
