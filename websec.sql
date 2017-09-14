@@ -29,3 +29,9 @@ name varchar(50) NOT NULL,
 price int NOT NULL
 );
 
+INSERT INTO Items(itemdid, name, price)
+VALUES(1, "Lycka", 50),
+(2, "Déjà vu", 100),
+(3, "Sömn", 150);
+
+
