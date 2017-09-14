@@ -8,6 +8,6 @@ sqlite3 db.db < ../webseq.sql
 ```
 * Set www-data to owner of folder and db (the apache server)
 ```
-chown www-data:www-data html
-chown www-data:www-data html/db.db
+sudo chown www-data:www-data html
+sudo chown www-data:www-data html/db.db
 ```
