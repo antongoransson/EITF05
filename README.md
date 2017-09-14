@@ -6,7 +6,7 @@ Projekt i Webbsäkerhet EITF05
 ```
 sqlite3 db.db < ../webseq.sql
 ```
-* Set www-data to owner of folder and db
+* Set www-data to owner of folder and db (the apache server)
 ```
 chown www-data:www-data html
 chown www-data:www-data html/db.db
