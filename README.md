@@ -11,3 +11,4 @@ sqlite3 db.db < ../webseq.sql
 sudo chown www-data:www-data html
 sudo chown www-data:www-data html/db.db
 ```
+* Change path in html/app/Config to the path to your db
