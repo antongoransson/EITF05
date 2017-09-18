@@ -6,9 +6,10 @@ Projekt i Webbsäkerhet EITF05
 ```
 sqlite3 phpsqlitedb.db < ../webseq.sql
 ```
-* Set www-data to owner of folder and db (the apache server)
+* Set www-data (the apache server) to owner of folder and db (If you're not using the standard directory)
 ```
 sudo chown www-data:www-data html
-sudo chown www-data:www-data html/db.db
+sudo chown www-data:www-data db
+sudo chown www-data:www-data /db/db.db
 ```
 * Change path in html/sql/Config.php to the path to your db
