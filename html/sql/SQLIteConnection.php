@@ -16,10 +16,9 @@ class SQLiteConnection {
      * @return \PDO
      */
     public function connect() {
-      $dir = dirname(dirname(__FILE__));
-      $baseDir = dirname($dir);
+      $dir = dirname(dirname(dirname(__FILE__)));
         if ($this->pdo == null) {
-            $this->pdo = new \PDO("sqlite:" . $baseDir.'/html/'.Config::PATH_TO_SQLITE_FILE);
+            $this->pdo = new \PDO("sqlite:" . $dir.'/'.Config::PATH_TO_SQLITE_FILE);
         }
         return $this->pdo;
     }

@@ -11,12 +11,12 @@ session_start();
   <body>
     <h1>Shop</h1>
     <?php
-    if(!$_SESSION["loggedIn"])
-      echo '<a href="/login">Login</a>';
-    else
+    if(!$_SESSION["loggedIn"]){
+      echo '<a href="/login">Login</a>'.'<br>';
+      echo '<a href="/register">Register</a>';
+    } else
       echo '<a href="/login/logoutscript.php">Logout</a>';
     ?>
-    <?php if(!$_SESSION["loggedIn"]) echo '<a href="/register">Register</a>'?>
     <br><br>
     <?php
       error_reporting(E_ALL);

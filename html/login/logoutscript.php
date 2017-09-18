@@ -3,11 +3,6 @@ session_start();
 ?>
 <html>
   <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', 1);
-    require realpath(dirname(__DIR__).'/vendor/autoload.php');
-    use SQL\SQLiteConnection;
-    use SQL\db;
     $_SESSION["loggedIn"] = false;
   ?>
     <meta http-equiv="refresh" content="1; URL=/">

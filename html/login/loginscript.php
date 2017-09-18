@@ -10,14 +10,14 @@ session_start();
     use SQL\db;
     $pdo = (new SQLiteConnection())->connect();
     if ($pdo != null){
-    $db = new DB($pdo);
-    $authenticated = $db->authUser($_POST['username'],$_POST['password']);
-    if($authenticated) {
-      echo "Login was successful";
-      $_SESSION["loggedIn"] = true;
-      $_SESSION["username"] = $_POST['username'];
-    } else
-      echo "Invalid username or password";
+      $db = new DB($pdo);
+      $authenticated = $db->authUser($_POST['username'],$_POST['password']);
+      if ($authenticated) {
+        echo "Login was successful";
+        $_SESSION["loggedIn"] = true;
+        $_SESSION["username"] = $_POST['username'];
+      } else
+        echo "Invalid username or password";
     }
     $pdo = null;
     $db = null;
