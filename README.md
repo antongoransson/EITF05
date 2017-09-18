@@ -10,6 +10,6 @@ sqlite3 phpsqlite.db < ../webseq.sql
 ```
 sudo chown www-data:www-data html
 sudo chown www-data:www-data db
-sudo chown www-data:www-data /db/db.db
+sudo chown www-data:www-data /db/phpsqlite.db
 ```
 * Change path in html/sql/Config.php to the path to your db
