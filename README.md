@@ -4,7 +4,7 @@ Projekt i Webbsäkerhet EITF05
 * Install sqlite3 for php
 * Create database folder in same folder as html and put db in there
 ```
-sqlite3 phpsqlitedb.db < ../webseq.sql
+sqlite3 phpsqlite.db < ../webseq.sql
 ```
 * Set www-data (the apache server) to owner of folder and db (If you're not using the standard directory)
 ```
