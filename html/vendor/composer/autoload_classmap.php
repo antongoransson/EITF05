@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Config' => $baseDir . '/app/Config.php',
-    'App\\SQLiteConnection' => $baseDir . '/app/SQLIteConnection.php',
+    'SQL\\Config' => $baseDir . '/sql/Config.php',
+    'SQL\\SQLiteConnection' => $baseDir . '/sql/SQLIteConnection.php',
+    'SQL\\db' => $baseDir . '/sql/db.php'
 );

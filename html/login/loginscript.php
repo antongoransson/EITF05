@@ -6,8 +6,8 @@ session_start();
     error_reporting(E_ALL);
     ini_set('display_errors', 1);
     require realpath(dirname(__DIR__).'/vendor/autoload.php');
-    use App\SQLiteConnection;
-    use App\db;
+    use SQL\SQLiteConnection;
+    use SQL\db;
     $pdo = (new SQLiteConnection())->connect();
     if ($pdo != null){
     $db = new DB($pdo);

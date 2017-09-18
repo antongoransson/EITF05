@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace SQL;
 
 /**
  * SQLite connnection
@@ -16,8 +16,10 @@ class SQLiteConnection {
      * @return \PDO
      */
     public function connect() {
+      $dir = dirname(dirname(__FILE__));
+      $baseDir = dirname($dir);
         if ($this->pdo == null) {
-            $this->pdo = new \PDO("sqlite:" . Config::PATH_TO_SQLITE_FILE);
+            $this->pdo = new \PDO("sqlite:" . $baseDir.'/html/'.Config::PATH_TO_SQLITE_FILE);
         }
         return $this->pdo;
     }

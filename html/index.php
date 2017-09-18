@@ -22,8 +22,8 @@ session_start();
       error_reporting(E_ALL);
       ini_set('display_errors', 1);
       require 'vendor/autoload.php';
-      use App\SQLiteConnection;
-      use App\db;
+      use SQL\SQLiteConnection;
+      use SQL\db;
 
       $pdo = (new SQLiteConnection())->connect();
       if ($pdo != null){
@@ -36,20 +36,19 @@ session_start();
       } else {
         echo "Could not connect to DB";
       }
-      $pdo=null;
-      $db=null;
+      $pdo = null;
+      $db = null;
     ?>
   </body>
     <?php if (count($items) > 0): ?>
       <!-- <div><?php echo implode('</div><div>', array_keys(current($items))); ?></div> -->
       <?php foreach ($items as $row): array_map('htmlentities', $row); ?>
         <div class="shopitem">
-          <!-- <?php echo $row['name']."Pris: ". $row['price']; ?> -->
           <?php echo '<img src="images/'.$row["name"].'.jpg" alt=Smiley face height= 100 width= 150 align= left vspace= 50px/>'; ?>
           <h1><?php echo($row['name']); ?></h1>
           <div class="form">
             <h2><?php echo("Pris: ".$row['price']." kr"); ?></h2>
-            <form class="item" method="post" action="">
+            <form class="item" method="post" >
               <select>
                 <option value=1>1</option>
                 <option value=2>2</option>
