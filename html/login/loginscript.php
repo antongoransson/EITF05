@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
   <?php
     error_reporting(E_ALL);
@@ -11,16 +14,19 @@
     $authenticated = $db->authUser($_POST['username'],$_POST['password']);
     if($authenticated) {
       echo "Login was successful";
+      $_SESSION["loggedIn"] = true;
+      $_SESSION["username"] = $_POST['username'];
     } else
       echo "Invalid username or password";
     }
+    $pdo = null;
+    $db = null;
   ?>
   <?php if ($authenticated): ?>
     <meta http-equiv="refresh" content="1; URL=/">
     <meta name="keywords" content="automatic redirection">
   <?php else: ?>
-    <form action="/">
-      <input type="submit" value="Go Back" />
-    </form>
+    <meta http-equiv="refresh" content="0; URL=/login">
+    <meta name="keywords" content="automatic redirection">
   <?php endif; ?>
 </html>
