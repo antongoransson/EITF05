@@ -2,7 +2,7 @@
 Projekt i Webbsäkerhet EITF05
 
 * Install sqlite3 for php
-* Create database
+* Create database folder in same folder as html and put db in there
 ```
 sqlite3 phpsqlitedb.db < ../webseq.sql
 ```
