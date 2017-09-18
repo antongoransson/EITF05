@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 session_start();
 ?>
@@ -11,7 +10,7 @@ session_start();
   <body>
     <h1>Shop</h1>
     <?php
-    if(!$_SESSION["loggedIn"]){
+    if(!$_SESSION["loggedIn"]) {
       echo '<a href="/login">Login</a>'.'<br>';
       echo '<a href="/register">Register</a>';
     } else
@@ -44,7 +43,7 @@ session_start();
       <!-- <div><?php echo implode('</div><div>', array_keys(current($items))); ?></div> -->
       <?php foreach ($items as $row): array_map('htmlentities', $row); ?>
         <div class="shopitem">
-          <?php echo '<img src="images/'.$row["name"].'.jpg" alt=Smiley face height= 100 width= 150 align= left vspace= 50px/>'; ?>
+          <?php echo '<img src="images/'.$row["name"].'.jpg" alt=INSERT PIC HERE height= 100 width= 150 align= left vspace= 50px/>'; ?>
           <h1><?php echo($row['name']); ?></h1>
           <div class="form">
             <h2><?php echo("Pris: ".$row['price']." kr"); ?></h2>
