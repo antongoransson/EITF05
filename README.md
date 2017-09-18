@@ -11,4 +11,4 @@ sqlite3 phpsqlitedb.db < ../webseq.sql
 sudo chown www-data:www-data html
 sudo chown www-data:www-data html/db.db
 ```
-* Change path in html/app/Config to the path to your db
+* Change path in html/sql/Config.php to the path to your db
