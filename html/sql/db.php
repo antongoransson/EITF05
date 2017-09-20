@@ -23,6 +23,11 @@ class DB {
   function putOrder($username, $itemid) {
     $statement = $this->pdo->prepare("INSERT INTO Orders(orderid, itemid, username, nbrofitems)
     VALUES(:orderid, :itemid, :username, :nbrofitems)");
+    $statement->bindValue()
+    $ret = $statement->execute(array(
+      ':username' => $username,
+    ));
+
   }
 
   function addUser($username, $pwhash, $address) {
@@ -42,6 +47,7 @@ class DB {
         print_r($statement->errorInfo());
         return false;
       } else {
+
         return true;
       }
     } else {

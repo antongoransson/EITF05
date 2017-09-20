@@ -11,13 +11,13 @@
         Address: <input type="text" name="address"><br>
         <input type="submit" value= "Register" >
       </form>
-      <form action="/">
-        <input type="submit" value="Go Back" />
+      <form >
+        <input type="submit" onclick="history.back()" value="Go Back" />
       </form>
       <?php
         require realpath(dirname(__DIR__).'/connect.php');
 
-        if($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
+        if($_POST['username'] != '' && $_POST['password'] != '' && $_POST['address'] != '') {
           $hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
           $registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
           if($registered){
