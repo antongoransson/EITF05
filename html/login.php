@@ -1,11 +1,14 @@
 <?php
 session_start();
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
 ?>
 <html>
   <head>
     <title> Login </title>
     <link rel="stylesheet" href="/../styles.css">
-    <?php include dirname(dirname(__FILE__)).'/navbar.php'?>
+    <?php include 'navbar.php'
+    ?>
   </head>
   <body>
     <div class="login"align="center">
@@ -18,7 +21,7 @@ session_start();
         <input type="submit"onclick="history.back()" value="Go Back" />
       </form>
       <?php
-        require realpath(dirname(__DIR__).'/connect.php');
+        require 'connect.php';
 
         if(isset($_POST["username"]) && isset($_POST["password"])){
           $authenticated = $db->authUser($_POST['username'],$_POST['password']);

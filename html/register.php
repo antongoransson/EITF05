@@ -5,7 +5,8 @@ session_start()
   <head>
     <title>Login</title>
     <link rel="stylesheet" href="/../styles.css">
-    <?php include dirname(dirname(__FILE__)).'/navbar.php'?>
+    <?php include 'navbar.php'
+    ?>
   </head>
   <body>
     <div class="login"align="center">
@@ -19,7 +20,7 @@ session_start()
         <input type="submit" onclick="history.back()" value="Go Back" />
       </form>
       <?php
-        require realpath(dirname(__DIR__).'/connect.php');
+        require 'connect.php';
 
     		$blacklist = array("password", "12345678", "123456789", "football",
          "1234567890", "1qaz2wsx", "princess", "qwertyuiop", "passw0rd",
