@@ -17,6 +17,9 @@ require 'connect.php';
       } else
         echo '<a href="/login/logoutscript.php">Logout</a>';
     ?>
+	<?php echo '<a href="checkout/checkout.php">Till kassan</a>'; ?>
+	
+	
     <br><br>
     <?php
       if(!$db)
@@ -29,7 +32,6 @@ require 'connect.php';
       }
     ?>
 
-
   </body>
     <?php if (count($items) > 0): ?>
       <!-- <div><?php echo implode('</div><div>', array_keys(current($items))); ?></div> -->
@@ -37,11 +39,14 @@ require 'connect.php';
         <div class="shopitem">
           <img src="images/<?=$row["name"]?>.jpg" alt="INSERT PIC HERE"
            height= 100 width= 150 align= left vspace= 50px/>
+		   <form class="item" action="checkout/shop.php?action=add&id=<?php echo $row["itemid"]; ?>" method="post">
           <h1><?= $row['name'] ?></h1>
+		  <input type="hidden" name="hidden_name" value="<?php echo $row['name']; ?>">
+		  <input type="hidden" name="itemid" value='.$row["itemid"].'>
           <div class="form">
             <h2>Pris <?=$row['price']?> kr</h2>
-            <form class="item" method="post">
-              <select name=nbrOfItems>
+			 <input type="hidden" name="hidden_price" value="<?php echo $row['price']; ?>">
+			  <select name=nbrOfItems>
                 <?php for ($i = 1; $i <= 10; $i++) { ?>
                   <option value=<?= $i ?>><?= $i ?></option>
                 <?php } ?>
@@ -49,7 +54,7 @@ require 'connect.php';
               <?php
               echo '<input type=hidden name= itemid value='.$row["itemid"].'>';
               ?>
-              <input type="submit"value="Lägg till i kundvagn"/>
+              <input type="submit" name="add" class="btn btn-default" value="Lägg till i kundvagn">
             </form>
           </div>
         </div>
