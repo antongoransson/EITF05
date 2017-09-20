@@ -23,9 +23,9 @@ class DB {
   function putOrder($username, $itemid) {
     $statement = $this->pdo->prepare("INSERT INTO Orders(orderid, itemid, username, nbrofitems)
     VALUES(:orderid, :itemid, :username, :nbrofitems)");
-    $statement->bindValue()
+    $statement->bindValue();
     $ret = $statement->execute(array(
-      ':username' => $username,
+      ':username' => $username
     ));
 
   }

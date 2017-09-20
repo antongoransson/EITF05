@@ -16,22 +16,18 @@
       </form>
       <?php
         require realpath(dirname(__DIR__).'/connect.php');
-		
+
 		$blacklist = array("password", "12345678", "123456789", "football", "1234567890", "1qaz2wsx", "princess", "qwertyuiop", "passw0rd", "starwars", "baseball", "jennifer", "superman", "trustno1", "michelle", "sunshine", "computer", "corvette", "iloveyou", "maverick");
-		
-		if(strlen($_POST['password'])<= 7 || strlen($_POST['password']) >=160 ){
+
+		if(strlen($_POST['password']) <= 7 || strlen($_POST['password']) >=160 ){
 			echo "Incorrect passwod length.";
 		}
-		
+
 		elseif(in_array($_POST['password'], $blacklist)){
 			echo "The password is too weak.";
 		}
 
-<<<<<<< HEAD
-        if($_POST['username'] != '' && $_POST['password'] != '' && $_POST['address'] != '') {
-=======
         elseif($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
->>>>>>> 944641546b9024b11aadd242515b231afb87e2e2
           $hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
           $registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
           if($registered){
