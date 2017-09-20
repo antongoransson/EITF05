@@ -17,23 +17,21 @@
       <?php
         require realpath(dirname(__DIR__).'/connect.php');
 		
-		$blacklist = array("password", "12345678", "123456789", "football", "1234567890", "1qaz2wsx", "princess", "qwertyuiop", "passw0rd", "starwars", "baseball", "jennifer", "superman", "trustno1", "michelle", "sunshine", "computer", "corvette", "iloveyou", "maverick");
-		
-		if(strlen($_POST['password'])<= 7 || strlen($_POST['password']) >=160 ){
-			echo "Incorrect passwod length.";
-		}
-		
-		elseif(in_array($_POST['password'], $blacklist)){
-			echo "The password is too weak.";
-		}
-
-        elseif($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
+	$blacklist = array("password", "12345678", "123456789", "football", "1234567890", "1qaz2wsx", "princess", "qwertyuiop", "passw0rd", "starwars", "baseball", "jennifer", "superman", "trustno1", "michelle", "sunshine", "computer", "corvette", "iloveyou", "maverick");
+	
+	if (strlen($_POST['password'])<= 7 || strlen($_POST['password']) >=160 ){
+		echo "Incorrect passwod length.";
+	} elseif (in_array($_POST['password'], $blacklist)){
+		echo "The password is too weak.";
+	} elseif ($_POST['password'] == $_POST['username']) {
+		echo "Your password can't be your username.";
+	} elseif ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
           $hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
           $registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
           if($registered){
             echo "Registration was successful you will be redirected to home page";
             header("refresh:2;URL=http://localhost/");
-          } else{
+          } else {
              echo "Username already in use";
          }
        }
