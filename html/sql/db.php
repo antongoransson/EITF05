@@ -6,7 +6,7 @@ class DB {
   private $pdo;
 
 /**
-* connect to the SQLite database
+* connect to the MySQL database
 */
   public function __construct($pdo) {
     $this->pdo = $pdo;
@@ -20,6 +20,10 @@ class DB {
     }
     return $items;
   }
+  function putOrder($username, $itemid) {
+    $statement = $this->pdo->prepare("INSERT INTO Orders(orderid, itemid, username, nbrofitems)
+    VALUES(:orderid, :itemid, :username, :nbrofitems)");
+  }
 
   function addUser($username, $pwhash, $address) {
     $userStatement = $this->pdo->prepare("SELECT * FROM Users WHERE username=:username;");
@@ -28,10 +32,11 @@ class DB {
     if($response) {
       $statement = $this->pdo->prepare("INSERT INTO Users(username, pwhash, address)
       VALUES(:username,:pwhash,:address)");
-      $statement->bindValue(':username', $username);
-      $statement->bindValue(':pwhash', $pwhash);
-      $statement->bindValue(':address', $address);
-      $ret = $statement->execute();
+      $ret = $statement->execute(array(
+        ':username' => $username,
+        ':pwhash' => $pwhash,
+        ':address' => $address
+      ));
       if(!$ret) {
         echo "\nPDO::errorInfo():\n";
         print_r($statement->errorInfo());

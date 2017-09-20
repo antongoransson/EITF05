@@ -7,6 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'SQL\\Config' => $baseDir . '/sql/Config.php',
-    'SQL\\SQLiteConnection' => $baseDir . '/sql/SQLIteConnection.php',
+    'SQL\\MySQLConnection' => $baseDir . '/sql/MySQLConnection.php',
     'SQL\\db' => $baseDir . '/sql/db.php'
 );

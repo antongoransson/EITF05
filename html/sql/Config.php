@@ -4,9 +4,9 @@ namespace SQL;
 
 class Config {
    /**
-    * path to the sqlite file
+    * path to the MySQL file
     */
-    const PATH_TO_SQLITE_FILE = 'db/phpsqlite.db';
+    const PATH_TO_MySQL_FILE = 'db/phpMySQL.db';
 
 }
 ?>
