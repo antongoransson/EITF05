@@ -15,8 +15,8 @@ session_start();
         Password: <input type="password" name="password"><br>
         <input type="submit" value="Login" >
       </form>
-      <form action="/">
-        <input type="submit" value="Go Back" />
+      <form>
+        <input type="submit"onclick="history.back()" value="Go Back" />
       </form>
       <?php
         require realpath(dirname(__DIR__).'/connect.php');

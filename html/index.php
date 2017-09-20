@@ -6,7 +6,7 @@ require 'connect.php';
 <head>
   <title> Shop </title>
   <link rel="stylesheet" href="styles.css">
-  <h1><?php if($_SESSION["loggedIn"]) echo "Användare: ". $_SESSION["username"]?></h1>
+  <h1><?php if($_SESSION["loggedIn"]) echo "Användare: ". htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 </head>
   <body>
     <h1>Shop</h1>
