@@ -10,9 +10,7 @@ require 'connect.php';
   ?>
 </head>
   <body>
-    <h1>Shop</h1>
-
-    <br><br>
+    <h1 class="title">Shop</h1>
     <?php
       if(!$db)
         echo $db->lastErrorMsg();
@@ -33,7 +31,7 @@ require 'connect.php';
            height= 100 width= 150 align= left vspace= 50px/>
           <h1><?= $row['name'] ?></h1>
           <div class="form">
-            <h2>Antal <?=$row['price']?> kr</h2>
+            <h2>Pris <?=$row['price']?> kr</h2>
             <form class="item" method="post">
               <select name=nbrOfItems>
                 <?php for ($i = 1; $i <= 10; $i++) { ?>

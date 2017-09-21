@@ -1,28 +1,29 @@
 <?php
 session_start();
+include '../connect.php';
 ?>
 
 <html>
 <head>
 	<title> Betalning </title>
-</head> 
-<body> 
+</head>
+<body>
 	<section>
 	<form id=payment action="/payment/receipt.php" method="post">
 		<h1> Betalningsinformation för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
-		<fieldset>	
+		<fieldset>
 			<label for=email>Email:</label><br>
 			<input id=email name=email type=email placeholder="example@domain.com" required />	<br>
 			<br>
 			<label for=phone>Telefon:</label><br>
-			<input id=phone name=phone type=tel placeholder="0123456789" />	
-			
+			<input id=phone name=phone type=tel placeholder="0123456789" />
+
 		</fieldset>
 		<fieldset>
             <legend>Leveransadress</legend>
 			<!-- printa den adress som finns i db -->
-			<?php echo htmlspecialchars($_SESSION["address"], ENT_QUOTES, 'UTF-8') ?>
-		
+			<?php echo $db->getAddress($_SESSION['username'])?>
+
 		</fieldset>
 		<fieldset>
 			<legend>Kortdetaljer</legend>
