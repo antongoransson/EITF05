@@ -1,3 +1,4 @@
 *.db
 private/
 env.php
+deploy.sh
