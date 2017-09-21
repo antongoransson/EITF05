@@ -19,18 +19,18 @@ require'../connect.php';
 	}
 	</style>
 </head>
-	<body>
-		<h1> Checkout för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
-		<?php
-      if(!$_SESSION["loggedIn"]) {
-        echo '<a href="login">Login</a>'.'<br>';
-        echo '<a href="register">Register</a>';
-      } else
-        echo '<a href="/login/logoutscript.php">Logout</a>';
-    ?>
+<body>
+	<h1> Checkout för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
+<?php
+if(!$_SESSION["loggedIn"]) {
+	echo '<a href="login">Login</a>'.'<br>';
+	echo '<a href="register">Register</a>';
+} else
+	echo '<a href="/login/logoutscript.php">Logout</a>';
+?>
 	<?php echo '<a href="../index.php">Fortsätt shoppa</a>'; ?>
 	<br><br>
-    <table style="width:100%">
+<table style="width:100%">
 		<tr>
 		<th>Produkt</th>
 		<th>Antal</th>
@@ -38,41 +38,52 @@ require'../connect.php';
 		<th>Total</th>
 		<th>Ta bort</th>
 		</tr>
-	<?php
-	if(!empty($_SESSION["cart"]))
+<?php
+if(!empty($_SESSION["cart"]))
+{
+	$total = 0;
+	$all_item_info = $db->getItems();
+	foreach($_SESSION["cart"] as $id => $amount)
 	{
-		$total = 0;
-		foreach($_SESSION["cart"] as $keys => $values)
+		$item_info = Array();
+		foreach($all_item_info as $item)
 		{
-	?>
-            <tr>
-            <td><?php echo $values["item_name"]; ?></td>
-            <td><?php echo $values["item_quantity"] ?></td>
-            <td><?php echo $values["product_price"]; ?> kr</td>
-            <td><?php echo number_format($values["item_quantity"] * $values["product_price"], 2); ?> kr</td>
-            <td><a href="shop.php?action=delete&id=<?php echo $values["product_id"]; ?>"><span class="text-danger">Ta bort</span></a></td>
-            </tr>
-            <?php 
-			$total = $total + ($values["item_quantity"] * $values["product_price"]);
+			if ($item["itemid"] == $id) {
+				$item_info = $item;
+				break;
+			}
 		}
-			?>
-			<tr>
-			<td colspan="4" align="right">Totalt: <?php echo number_format($total, 2); ?> kr</td>
-        
-			<td></td>
-			</tr>
-		<?php
+?>
+		<tr>
+		<td><?php echo $item_info["name"]; ?></td>
+		<td><?php echo $amount; ?></td>
+		<td><?php echo $item_info["price"]; ?> kr</td>
+		<td><?php echo number_format($amount * $item_info["price"], 2); ?> kr</td>
+		<td>
+			<form action="shop.php" method="post">
+				<input type="hidden" name="itemid" value="<?php echo $id; ?>">
+				<input type="submit" name="delete" value="ta bort" />
+			</form>
+		</td>
+		</tr>
+<?php 
+		$total = $total + ($amount * $item_info["price"]);
 	}
-		?>
-    </table>
-	
-	
-    </div>
-    </div>
-	<br><br>
-			<button type="submit" class="btn btn-default">Till betalning</button>
+?>
+	<tr>
+	<td colspan="4" align="right">Totalt: <?php echo number_format($total, 2); ?> kr</td>
 
- </body>
+	<td></td>
+	</tr>
+<?php
+}
+?>
+</table>
+</div>
+</div>
+<br><br>
+<button type="submit" class="btn btn-default">Till betalning</button>
+</body>
 </html>
 
-	
+
