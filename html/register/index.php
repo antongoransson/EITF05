@@ -9,7 +9,7 @@
 				Username:<input type="text" name="username"><br>
 				Password:<input type="password" name="password"><br>
 				Address: <input type="text" name="address"><br>
-			<input type="submit" value= "Register" >
+				<input type="submit" value= "Register" >
 			</form>
 			<form >
 				<input type="submit" onclick="history.back()" value="Go Back" />
