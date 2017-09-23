@@ -21,13 +21,14 @@ CREATE TABLE Items (
 );
 
 CREATE TABLE Orders (
+  ID int NOT NULL AUTO_INCREMENT,
   orderid int NOT NULL,
   itemid int NOT NULL,
   username varchar(50) NOT NULL,
   timedate DATETIME NOT NULL,
   nbrofitems int NOT NULL,
   -- delivered BOOLEAN,
-  PRIMARY KEY(orderid),
+  PRIMARY KEY(ID),
   -- FOREIGN KEY(itemid) REFERENCES Items(itemid)
   FOREIGN KEY(itemid) REFERENCES Items(itemid),
   FOREIGN KEY(username) REFERENCES Users(username)

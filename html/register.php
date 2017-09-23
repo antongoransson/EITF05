@@ -1,7 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
+  echo "<script> window.location = 'index.php'; </script>";
+ ?>
 <html>
 	<head>
 		<title>Regiter</title>
-		<link rel="stylesheet" href="../styles.css">
+		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
 		<div class="login"align="center">
@@ -15,7 +20,7 @@
 				<input type="submit" onclick="history.back()" value="Go Back" />
 			</form>
 		<?php
-		require realpath(dirname(__DIR__).'/connect.php');
+		require 'connect.php';
 		$blacklist = array(
 			"password", "12345678", "123456789", "football",
 			"1234567890", "1qaz2wsx", "princess", "qwertyuiop",
@@ -35,7 +40,9 @@
 				$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
 				$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
 				if($registered){
-					echo "<script> window.location = '../index.php'; </script>";
+          $_SESSION["loggedIn"]=true;
+          $_SESSION['username'] = $_POST['username'];
+					echo "<script> window.location = 'index.php'; </script>";
 				} else {
 					echo "Username already in use";
 				}
