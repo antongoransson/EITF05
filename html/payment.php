@@ -1,28 +1,31 @@
 <?php
 session_start();
+include 'connect.php';
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
+	echo "<script> window.location = 'index.php'; </script>";
 ?>
 
 <html>
 <head>
 	<title> Betalning </title>
-</head> 
-<body> 
+</head>
+<body>
 	<section>
-	<form id=payment action="/payment/receipt.php" method="post">
+	<form id=payment action="receipt.php" method="post">
 		<h1> Betalningsinformation för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
-		<fieldset>	
+		<fieldset>
 			<label for=email>Email:</label><br>
 			<input id=email name=email type=email placeholder="example@domain.com" required />	<br>
 			<br>
 			<label for=phone>Telefon:</label><br>
-			<input id=phone name=phone type=tel placeholder="0123456789" />	
-			
+			<input id=phone name=phone type=tel placeholder="0123456789" />
+
 		</fieldset>
 		<fieldset>
             <legend>Leveransadress</legend>
 			<!-- printa den adress som finns i db -->
-			<?php echo htmlspecialchars($_SESSION["address"], ENT_QUOTES, 'UTF-8') ?>
-		
+			<?= $db->getAddress($_SESSION['username'])?>
+
 		</fieldset>
 		<fieldset>
 			<legend>Kortdetaljer</legend>
@@ -46,8 +49,14 @@ session_start();
 				<label for=cardname>Namn på kortet</label><br>
 				<input id=cardname name=cardname placeholder="Sam Morris" required /> <br>
 		</fieldset>
-		<fieldset>
-			<button type=submit>Betala</button>
+		<fieldset >
+			<form action='receipt.php'>
+				<button type=submit>Betala</button>
+			</form>
+			<form action='index.php'style=display:inline-block;>
+				<button type=submit>Avbryt</button>
+			</form>
+
 		</fieldset>
 	</form>
 	</section>
