@@ -50,15 +50,15 @@ session_start()
 
 =======
 	<head>
-		<title>Login</title>
-		<link rel="stylesheet" href="/../styles.css">
+		<title>Regiter</title>
+		<link rel="stylesheet" href="../styles.css">
 	</head>
 	<body>
 		<div class="login"align="center">
 			<form class="login" method="post" >
-				Username:<input type="text" name="username"><br>
-				Password:<input type="password" name="password"><br>
-				Address: <input type="text" name="address"><br>
+				<label>Username:</label><input type="text" name="username"><br>
+				<label>Password:</label><input type="password" name="password"><br>
+				<label>Address:</label><input type="text" name="address"><br>
 				<input type="submit" value= "Register" >
 			</form>
 			<form >
@@ -66,22 +66,29 @@ session_start()
 			</form>
 		<?php
 		require realpath(dirname(__DIR__).'/connect.php');
-		$blacklist = array("password", "12345678", "123456789", "football", "1234567890", "1qaz2wsx", "princess", "qwertyuiop", "passw0rd", "starwars", "baseball", "jennifer", "superman", "trustno1", "michelle", "sunshine", "computer", "corvette", "iloveyou", "maverick");
-
-		if (strlen($_POST['password'])<= 7 || strlen($_POST['password']) >=160 ){
-			echo "Incorrect passwod length.";
-		} elseif (in_array($_POST['password'], $blacklist)){
-			echo "The password is too weak.";
-		} elseif ($_POST['password'] == $_POST['username']) {
-			echo "Your password can't be your username.";
-		} elseif ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
-			$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
-			$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
-			if($registered){
-				echo "Registration was successful you will be redirected to home page";
-				header("refresh:2;URL=http://localhost/");
+		$blacklist = array(
+			"password", "12345678", "123456789", "football",
+			"1234567890", "1qaz2wsx", "princess", "qwertyuiop",
+			"passw0rd", "starwars", "baseball", "jennifer",
+			"superman", "trustno1", "michelle", "sunshine",
+			"computer", "corvette", "iloveyou", "maverick"
+		);
+		if ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
+			$minpasslength = 7;
+			if (strlen($_POST['password']) <= $minpasslength || strlen($_POST['password']) >=160 ){
+				echo "Password must be at least ".$minpasslength." characters long.";
+			} elseif (in_array($_POST['password'], $blacklist)){
+				echo "The password is too weak.";
+			} elseif ($_POST['password'] == $_POST['username']) {
+				echo "Your password can't be your username.";
 			} else {
-				echo "Username already in use";
+				$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
+				$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
+				if($registered){
+					echo "<script> window.location = '../index.php'; </script>";
+				} else {
+					echo "Username already in use";
+				}
 			}
 		}
 		?>
