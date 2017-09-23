@@ -6,7 +6,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 <html>
   <head>
     <title> Login </title>
-    <link rel="stylesheet" href="/../styles.css">
+    <link rel="stylesheet" href="styles.css">
     <?php include 'navbar.php'
     ?>
   </head>
@@ -18,7 +18,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
         <input type="submit" value="Login" >
       </form>
       <form>
-        <input type="submit"onclick="history.back()" value="Go Back" />
+        <input type="submit" onclick="history.back()" value="Go Back" />
       </form>
       <?php
         require 'connect.php';

@@ -38,7 +38,10 @@ class DB {
           $statement->bindValue(':nbrofitems', $nbrofitems, \PDO::PARAM_INT);
           $statement->bindValue(':username', $username, \PDO::PARAM_STR);
           $ret = $statement->execute();
-          print_r($statement->errorInfo());
+          if(!$ret)
+            print_r($statement->errorInfo());
+          else
+            echo "Purchase successful!";
         }
       }
     }
@@ -49,7 +52,6 @@ class DB {
     $ret = $statement->execute();
     $items = array();
 
-    echo "HI";
     while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
       $items[]=$row;
     }

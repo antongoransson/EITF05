@@ -9,7 +9,11 @@
 	  <link rel="stylesheet" href="styles.css">
 	</head>
 	<body style=margin-top:60px>
-		<h1> Checkout för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
+		<h1> Checkout<?php
+		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
+		 echo " för ".htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
+		 ?>
+	 </h1>
 		<?php echo '<a href="index.php">Fortsätt shoppa</a>'; ?>
 		<br><br>
 		<table style="width:100%">
@@ -68,8 +72,7 @@
 		<?php
 	} else {
 		?>
-			<button type="submit" class="btn btn-default"title="Var snäll logga in för att betala" disabled >Till betalning</button>
-
+			<button type="submit" class="btn btn-default"title="Var vänlig logga in för att betala" disabled >Till betalning</button>
 	<?php
 }?>
 	</body>
