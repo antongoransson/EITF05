@@ -1,71 +1,76 @@
 <?php
-session_start();
-require 'connect.php';
-include 'navbar.php';
+	session_start();
+	require'connect.php';
+	include 'navbar.php'
 ?>
 <html>
-<head>
-	<link rel="stylesheet" href="/styles.css">
-	<title> Checkout </title>
-	<style>
-	table, th, td {
-		border: 1px solid black;
-		border-collapse: collapse;
-	}
-	th, td {
-		padding: 5px;
-	}
-	th {
-		text-align: left;
-	}
-	</style>
-</head>
-	<body>
-		<h1> Checkout för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
-	<?php echo '<a href="index.php">Fortsätt shoppa</a>'; ?>
-	<br><br>
-    <table style="width:100%">
-		<tr>
-		<th>Produkt</th>
-		<th>Antal</th>
-		<th>Pris</th>
-		<th>Total</th>
-		<th>Ta bort</th>
-		</tr>
-	<?php
-	if(!empty($_SESSION["cart"]))
-	{
-		$total = 0;
-		foreach($_SESSION["cart"] as $keys => $values)
-		{
-	?>
-  <tr>
-	  <td><?php echo $values["item_name"]; ?></td>
-	  <td><?php echo $values["item_quantity"] ?></td>
-	  <td><?php echo $values["product_price"]; ?> kr</td>
-	  <td><?php echo number_format($values["item_quantity"] * $values["product_price"], 2); ?> kr</td>
-	  <td><a href="shop.php?action=delete&id=<?php echo $values["product_id"]; ?>"><span class="text-danger">Ta bort</span></a></td>
-  </tr>
-            <?php
-			$total = $total + ($values["item_quantity"] * $values["product_price"]);
-		}
-			?>
+	<head>
+		<title> Checkout </title>
+	  <link rel="stylesheet" href="styles.css">
+	</head>
+	<body style=margin-top:60px>
+		<h1> Checkout för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
+		<?php echo '<a href="index.php">Fortsätt shoppa</a>'; ?>
+		<br><br>
+		<table style="width:100%">
 			<tr>
-			<td colspan="4" align="right">Totalt: <?php echo number_format($total, 2); ?> kr</td>
-
-			<td></td>
+				<th>Produkt</th>
+				<th>Antal</th>
+				<th>Pris</th>
+				<th>Total</th>
+				<th>Ta bort</th>
 			</tr>
 		<?php
-	}
+			if(!empty($_SESSION["cart"])){
+				$total = 0;
+				$all_item_info = $db->getItems();
+				foreach($_SESSION["cart"] as $id => $amount){
+					$item_info = array();
+					foreach($all_item_info as $item){
+						if ($item["itemid"] == $id) {
+							$item_info = $item;
+							break;
+						}
+					}
 		?>
-    </table>
+		<tr>
+			<td><?= $item_info["name"]; ?></td>
+			<td><?= $amount; ?></td>
+			<td><?= $item_info["price"]; ?> kr</td>
+			<td><?= number_format($amount * $item_info["price"], 2); ?> kr</td>
+			<td>
+				<form action="shop.php" method="post">
+					<input type="hidden" name="itemid" value="<?= $id; ?>">
+					<input type="submit" name="delete" value="Ta bort" />
+				</form>
+			</td>
+		</tr>
+	<?php
+			$total = $total + ($amount * $item_info["price"]);
+		}
+	?>
+		<tr>
+			<td colspan="4" align="right">Totalt: <?= number_format($total, 2); ?> kr</td>
 
-
-    </div>
-    </div>
-	<br><br>
-			<form action =payment.php>
+			<td></td>
+		</tr>
+		<?php
+		}
+		?>
+		</table>
+		<br>
+		<?php
+		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
+			?>
+			<form action=payment.php>
 				<button type="submit" class="btn btn-default">Till betalning</button>
 			</form>
- </body>
+		<?php
+	} else {
+		?>
+			<button type="submit" class="btn btn-default"title="Var snäll logga in för att betala" disabled >Till betalning</button>
+
+	<?php
+}?>
+	</body>
 </html>

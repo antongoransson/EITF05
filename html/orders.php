@@ -1,3 +1,6 @@
+<?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
+  echo "<script> window.location = 'index.php'; </script>";
+   ?>
 <?php
   session_start();
   require 'connect.php';
@@ -21,7 +24,7 @@
   function printCostRow($price, $row){
     echo "<tr><td>Total Kostnad: ".$price. "</td><td></td><td></td><td></td><td></td></tr>";
   }
-  
+
   $first = true;
   $price = 0;
   $ctr = 0;

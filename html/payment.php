@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'connect.php';
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
+	echo "<script> window.location = 'index.php'; </script>";
 ?>
 
 <html>
@@ -9,7 +11,7 @@ include 'connect.php';
 </head>
 <body>
 	<section>
-	<form id=payment action="/payment/receipt.php" method="post">
+	<form id=payment action="receipt.php" method="post">
 		<h1> Betalningsinformation för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
 			<label for=email>Email:</label><br>
@@ -22,7 +24,7 @@ include 'connect.php';
 		<fieldset>
             <legend>Leveransadress</legend>
 			<!-- printa den adress som finns i db -->
-			<?php echo $db->getAddress($_SESSION['username'])?>
+			<?= $db->getAddress($_SESSION['username'])?>
 
 		</fieldset>
 		<fieldset>

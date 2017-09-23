@@ -1,8 +1,8 @@
 <?php
 session_start();
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
-?>
+if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
+  echo "<script> window.location = 'index.php'; </script>";
+ ?>
 <html>
   <head>
     <title> Login </title>
