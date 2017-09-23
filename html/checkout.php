@@ -64,7 +64,7 @@
 		</table>
 		<br>
 		<?php
-		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']) {
+		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
 			?>
 			<form action=payment.php>
 				<button type="submit" class="btn btn-default">Till betalning</button>
@@ -72,7 +72,12 @@
 		<?php
 	} else {
 		?>
-			<button type="submit" class="btn btn-default"title="Var vänlig logga in för att betala" disabled >Till betalning</button>
+		<button
+			type="submit"
+			class="btn btn-default"
+			title="Var vänlig logga in eller lägg till varor för att betala"
+		 	disabled >Till betalning
+		</button>
 	<?php
 }?>
 	</body>
