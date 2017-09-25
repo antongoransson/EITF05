@@ -14,7 +14,6 @@
 		 echo " för ".htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
 		 ?>
 	 </h1>
-		<?php echo '<a href="index.php">Fortsätt shoppa</a>'; ?>
 		<br><br>
 		<table style="width:100%">
 			<tr>
@@ -50,12 +49,11 @@
 			</td>
 		</tr>
 	<?php
-			$total = $total + ($amount * $item_info["price"]);
+			$total+= ($amount * $item_info["price"]);
 		}
 	?>
 		<tr>
 			<td colspan="4" align="right">Totalt: <?= number_format($total, 2); ?> kr</td>
-
 			<td></td>
 		</tr>
 		<?php

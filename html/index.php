@@ -1,17 +1,16 @@
 <?php
 session_start();
 require_once 'connect.php';
+
 ?>
 <html>
 <head>
   <title> Shop </title>
   <link rel="stylesheet" href="styles.css">
-  <?php include 'navbar.php';
-  ?>
+  <?php include 'navbar.php';?>
 </head>
   <body>
     <h1 class="title">Shop</h1>
-    <?='<a href="checkout.php">Till kassan</a>' ?>
     <?php
       if(!$db)
         echo $db->lastErrorMsg();

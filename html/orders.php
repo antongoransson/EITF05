@@ -8,6 +8,7 @@
 
 <html>
   <head>
+    <title>Beställningar</title>
     <link rel="stylesheet" href="styles.css">
     <?php include 'navbar.php'
     ?>

@@ -5,7 +5,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
  ?>
 <html>
 	<head>
-		<title>Regiter</title>
+		<title>Registrering</title>
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body>
@@ -30,7 +30,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 		);
 		if ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
 			$minpasslength = 7;
-			if (strlen($_POST['password']) <= $minpasslength || strlen($_POST['password']) >=160 ){
+			if (strlen($_POST['password']) < $minpasslength || strlen($_POST['password']) >=160 ){
 				echo "Password must be at least ".$minpasslength." characters long.";
 			} elseif (in_array($_POST['password'], $blacklist)){
 				echo "The password is too weak.";

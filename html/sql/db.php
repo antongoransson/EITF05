@@ -40,8 +40,8 @@ class DB {
           $ret = $statement->execute();
           if(!$ret)
             print_r($statement->errorInfo());
-          else
-            echo "Purchase successful!";
+          else{}
+
         }
       }
     }
@@ -91,8 +91,8 @@ class DB {
         ':address' => $address
       ));
       if(!$ret) {
-        echo "\nPDO::errorInfo():\n";
-        print_r($statement->errorInfo());
+        // echo "\nPDO::errorInfo():\n";
+        // print_r($statement->errorInfo());
         return false;
       } else {
 
