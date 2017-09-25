@@ -27,6 +27,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
           $authenticated = $db->authUser($_POST['username'],$_POST['password']);
           if($authenticated) {
             echo "Login was successful you will be redirected shortly";
+            session_regenerate_id();
             $_SESSION["loggedIn"] = true;
             $_SESSION["username"] = $_POST['username'];
             header("Location:http://localhost/");

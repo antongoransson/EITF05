@@ -40,6 +40,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 				$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
 				$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
 				if($registered){
+          session_regenerate_id();
           $_SESSION["loggedIn"]=true;
           $_SESSION['username'] = $_POST['username'];
 					echo "<script> window.location = 'index.php'; </script>";
