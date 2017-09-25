@@ -2,6 +2,7 @@
 session_start();
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
   echo "<script> window.location = 'index.php'; </script>";
+include 'navbar.php';
  ?>
 <html>
 	<head>

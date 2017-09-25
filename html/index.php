@@ -27,7 +27,7 @@ require_once 'connect.php';
     <?php foreach ($items as $row):?>
       <div class="shopitem">
         <img src="images/<?=$row["name"]?>.jpg" alt="INSERT PIC HERE"
-         height= 100 width= 150 align= left vspace= 50px/>
+         height= 150 width= 200 align= left vspace= 25px style=margin-left:7px;/>
         <h1><?= $row['name'] ?></h1>
         <div class="form">
           <form class="item" <?php echo $row["itemid"]; ?> method="post">
