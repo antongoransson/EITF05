@@ -33,7 +33,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
             session_regenerate_id();
             $_SESSION["loggedIn"] = true;
             $_SESSION["username"] = $_POST['username'];
-            header("Location:http://localhost/");
+            header("Location:index.php");
           } else
             echo "Invalid username or password";
         }
