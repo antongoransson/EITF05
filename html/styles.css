@@ -37,50 +37,50 @@ form.item {
   margin-right: 5px;
 }
 input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }
 input[type=text]:focus, input[type=password]:focus {
-    background-color: lightblue;
+  background-color: lightblue;
 }
 button[type=submit] {
-    background-color: #3399ff;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
+  background-color: #3399ff;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
 }
 .cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-    display: block;
-    border-radius: 5px;
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+  display: block;
+  border-radius: 5px;
 }
 button[type=add] {
-    background-color: #3399ff;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+  background-color: #3399ff;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
 }
 button[type=remove] {
-    background-color: #3399ff;
-    color: white;
-    padding: 14px 20px;
-    margin-left:20%;
-    margin-top: 3%;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 60%;
+  background-color: #3399ff;
+  color: white;
+  padding: 14px 20px;
+  margin-left:20%;
+  margin-top: 3%;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 60%;
 }
 button[disabled] {
   background-color: #cccccc;
@@ -98,7 +98,6 @@ select {
 
 div.login {
   padding: 16px;
-
 }
 
 form.login {
@@ -111,45 +110,20 @@ form.login {
   border-radius: 10px;
 }
 table {
-    border-collapse: collapse;
-    width: 95%;
-    margin:auto;
+  border-collapse: collapse;
+  width: 95%;
+  margin:auto;
 }
 
 th, td {
-    text-align: left;
-    padding: 10px;
-    border: 1px solid black;
-    font-size: 1.4em;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid black;
+  font-size: 1.4em;
 }
 
 tr:nth-child(even){background-color: #f2f2f2}
 th {
     background-color: #3399ff;
     color: white;
-}
-
-.tooltip {
-    position: relative;
-    display: inline-block;
-}
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: -5px;
-    left: 105%;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
 }

@@ -16,7 +16,7 @@
 		 ?>
 	 </h1>
 		<br><br>
-		<table style="width:100%">
+		<table >
 			<tr>
 				<th>Produkt</th>
 				<th>Antal</th>
@@ -63,8 +63,8 @@
 		</table>
 		<br>
 		<?php
-		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
-			?>
+			if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
+		?>
 			<form action=payment.php>
 				<button type="submit" class="btn btn-default">Till betalning</button>
 			</form>
