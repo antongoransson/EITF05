@@ -3,6 +3,7 @@
   if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
     echo "<script> window.location = 'index.php'; </script>";
   require 'connect.php';
+  $currpage = "orders.php";
   $items = $db->getOrders($_SESSION['username']);
 ?>
 
@@ -48,5 +49,8 @@
     }
     echo "</table>";
   ?>
+  <?php else:
+    echo "<h1>Du har inte handlat några varor! =)</h1>";
+   ?>
   <?php endif; ?>
 </html

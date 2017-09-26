@@ -1,6 +1,7 @@
 <?php
 	session_start();
 	require'connect.php';
+	$currpage = "checkout.php";
 	include 'navbar.php'
 ?>
 <html>
@@ -21,7 +22,7 @@
 				<th>Antal</th>
 				<th>Pris</th>
 				<th>Total</th>
-				<th>Ta bort</th>
+				<th></th>
 			</tr>
 		<?php
 			if(!empty($_SESSION["cart"])){
@@ -44,7 +45,7 @@
 			<td>
 				<form action="shop.php" method="post">
 					<input type="hidden" name="itemid" value="<?= $id; ?>">
-					<input type="submit" name="delete" value="Ta bort" />
+					<button type="remove" name="delete" value="Ta bort">Ta bort </button>
 				</form>
 			</td>
 		</tr>

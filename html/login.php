@@ -1,5 +1,6 @@
 <?php
 session_start();
+$currpage='login.php';
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
   echo "<script> window.location = 'index.php'; </script>";
  ?>
@@ -11,14 +12,16 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
     ?>
   </head>
   <body>
-    <div class="login"align="center">
       <form class="login" method="post" >
-        Username: <input type="text" name="username"><br>
-        Password: <input type="password" name="password"><br>
-        <input type="submit" value="Login" >
-      </form>
-      <form>
-        <input type="submit" onclick="history.back()" value="Go Back" />
+        <div class="login">
+          <label><b>Username</b></label>
+          <input type="text" name="username" required><br>
+          <label><b>Password</b></label>
+          <input type="password" name="password" required><br>
+          <button type="submit" >Login</button>
+        <div style="background-color:#f1f1f1">
+          <button class="cancelbtn" type="button"  onclick="history.back()" >Cancel</button>
+        </div>
       </form>
       <?php
         require 'connect.php';

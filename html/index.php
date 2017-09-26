@@ -1,15 +1,15 @@
 <?php
 session_start();
 require_once 'connect.php';
+$currpage = "index.php";
+include 'navbar.php';
 ?>
 <html>
 <head>
   <title> Shop </title>
   <link rel="stylesheet" href="styles.css">
-  <?php include 'navbar.php';?>
 </head>
-  <body>
-    <h1 class="title">Shop</h1>
+  <body style=margin-top:70px;>
     <?php
       if(!$db)
         echo $db->lastErrorMsg();
@@ -22,7 +22,7 @@ require_once 'connect.php';
       }
 
     ?>
-  </body>
+
   <?php if (count($items) > 0): ?>
     <?php foreach ($items as $row):?>
       <div class="shopitem">
@@ -41,10 +41,11 @@ require_once 'connect.php';
             <?php
             echo '<input type=hidden name= itemid value='.$row["itemid"].'>';
             ?>
-            <input type="submit" name="add" class="btn btn-default" value="Lägg till i kundvagn">
+            <button type="add" name="add">Lägg till i kundvagn</button>
           </form>
         </div>
       </div>
     <?php endforeach; ?>
   <?php endif; ?>
+  </body>
 </html>
