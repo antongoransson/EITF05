@@ -14,7 +14,7 @@ class MySQLConnection {
      * @return \PDO
      */
     public function connect() {
-      include dirname('../../').'/env.php';
+      include dirname(dirname(dirname(__FILE__))).'/env.php';
 
       $url = parse_url(getenv('DBURL'));
       $server = $url['host'];

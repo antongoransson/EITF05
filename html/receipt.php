@@ -1,7 +1,8 @@
 <?php
 session_start();
 include 'connect.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_POST['payment']))
+require_once 'csrf.php';
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_POST['csrf']))
   echo "<script> window.location = 'index.php'; </script>";
 else {
   $currpage = "receipt.php";
