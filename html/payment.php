@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'connect.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['cart']))
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
 	echo "<script> window.location = 'index.php'; </script>";
 ?>
 

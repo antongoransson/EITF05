@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'csrf.php';
 $currpage='login.php';
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
   echo "<script> window.location = 'index.php'; </script>";
@@ -18,6 +19,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
           <input type="text" name="username" required><br>
           <label><b>Password</b></label>
           <input type="password" name="password" required><br>
+					<?php echo csrf_input_tag();?>
           <button type="submit" >Login</button>
         <div style="background-color:#f1f1f1">
           <button class="cancelbtn" type="button"  onclick="history.back()" >Cancel</button>
@@ -26,7 +28,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
       <?php
         require 'connect.php';
 
-        if(isset($_POST["username"]) && isset($_POST["password"])){
+        if(isset($_POST["username"]) && isset($_POST["password"]) && csrf_check($_POST['csrf'])){
           $authenticated = $db->authUser($_POST['username'],$_POST['password']);
           if($authenticated) {
             echo "Login was successful you will be redirected shortly";

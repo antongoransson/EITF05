@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'csrf.php';
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
   echo "<script> window.location = 'index.php'; </script>";
 $currpage = "register.php";
@@ -19,6 +20,7 @@ include 'navbar.php';
           <input type="password" name="password" required><br>
   				<label><b>Address</b></label>
           <input type="text" name="address" required><br>
+					<?php echo csrf_input_tag(); ?>
   				<button type="submit">Register</button>
 			<div style="background-color:#f1f1f1">
 				<button class=cancelbtn type=button onclick="history.back()">Cancel</button>
@@ -33,7 +35,7 @@ include 'navbar.php';
 			"superman", "trustno1", "michelle", "sunshine",
 			"computer", "corvette", "iloveyou", "maverick"
 		);
-    if(isset($_POST['username'])){
+    if(isset($_POST['username']) && csrf_check($_POST['csrf'])){
   		if ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
   			$minpasslength = 7;
   			if (strlen($_POST['password']) < $minpasslength || strlen($_POST['password']) >=160 ){
@@ -42,7 +44,7 @@ include 'navbar.php';
   				$error = "The password is too weak.";
   			} elseif ($_POST['password'] == $_POST['username']) {
   				$error = "Your password can't be your username.";
-  			} elseif ((!(preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $_POST['password']))){
+  			} elseif (!(preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $_POST['password']))){
 				$error = "Password must contain letters and numbers.";
 			}else {
   				$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);

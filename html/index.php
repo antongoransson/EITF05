@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'csrf.php';
 require_once 'connect.php';
 $currpage = "index.php";
 include 'navbar.php';
@@ -16,7 +17,7 @@ include 'navbar.php';
        else
         $items= $db->getItems();
 
-      if(isset($_POST["nbrOfItems"]) && $_POST["nbrOfItems"] > 0){
+      if(isset($_POST["nbrOfItems"]) && $_POST["nbrOfItems"] > 0 && csrf_check($_POST['csrf'])){
        	$_SESSION["cart"][$_POST["itemid"]] += $_POST["nbrOfItems"];
         $_POST["nbrOfItems"] = 0;
       }
@@ -37,8 +38,9 @@ include 'navbar.php';
                 <option value=<?= $i ?>><?= $i ?></option>
               <?php } ?>
             </select>
-            <?=
-             '<input type=hidden name= itemid value='.$row["itemid"].'>';
+            <?php
+            echo '<input type=hidden name= itemid value='.$row["itemid"].'>';
+            echo csrf_input_tag();
             ?>
             <button type="add" name="add">Lägg till i kundvagn</button>
           </form>
