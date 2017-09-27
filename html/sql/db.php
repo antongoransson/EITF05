@@ -49,18 +49,18 @@ class DB {
   function getOrders($username) {
 		$items = array();
 
-		$sql= "SELECT * from Orders where username='$username'";
-		$ret= $this->pdo->query($sql);
-		foreach ($ret as $row) {
-			$items[]=$row;
-		}
+		// $sql= "SELECT * from Orders where username='$username'";
+		// $ret= $this->pdo->query($sql);
+		// foreach ($ret as $row) {
+		// 	$items[]=$row;
+		// }
 
-    // $statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
-    // $statement->bindValue(':username', $username, \PDO::PARAM_STR);
-    // $ret = $statement->execute();
-    // while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-    //   $items[]=$row;
-    // }
+    $statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
+    $statement->bindValue(':username', $username, \PDO::PARAM_STR);
+    $ret = $statement->execute();
+    while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+      $items[]=$row;
+    }
 
     return $items;
   }
