@@ -1,8 +1,7 @@
 <?php
 session_start();
-require_once 'csrf.php';
-require_once 'connect.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET['csrf']))
+include 'connect.php';
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
 	echo "<script> window.location = 'index.php'; </script>";
 ?>
 
@@ -12,7 +11,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET[
 </head>
 <body>
 	<section>
-	<form id=payment action="receipt.php" method="post">
+	<form action="receipt.php" method="post">
 		<?php echo csrf_input_tag(); ?>
 		<h1> Betalningsinformation för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
@@ -50,6 +49,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET[
 				<br>
 				<label for=cardname>Namn på kortet</label><br>
 				<input id=cardname name=cardname placeholder="Sam Morris" required /> <br>
+				<input type=hidden name=payment value="val"/> <br>
 		</fieldset>
 		<fieldset >
 			<button type=submit>Betala</button>
