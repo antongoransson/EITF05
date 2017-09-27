@@ -13,6 +13,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET[
 <body>
 	<section>
 	<form id=payment action="receipt.php" method="post">
+		<?php echo csrf_input_tag(); ?>
 		<h1> Betalningsinformation för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
 			<label for=email>Email:</label><br>
@@ -51,9 +52,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET[
 				<input id=cardname name=cardname placeholder="Sam Morris" required /> <br>
 		</fieldset>
 		<fieldset >
-			<form action='receipt.php'>
-				<button type=submit>Betala</button>
-			</form>
+			<button type=submit>Betala</button>
 			<form action='index.php'style=display:inline-block;>
 				<button type=submit>Avbryt</button>
 			</form>
