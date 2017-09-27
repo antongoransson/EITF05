@@ -32,7 +32,7 @@ while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
 
 # XSS Attack
 
-* Create a user with username such as:
+* Create a user with username such as:(If it says username already in use, comment the $username line in addUser in db.php)
 ```
 <script>
 document.body.innerHTML=
@@ -42,8 +42,7 @@ document.body.innerHTML=
  frameborder="0" />';
 </script>
 ```
-* Remove for example the following code in header in checkout.php: (You might need
-	to comment the $username line in addUser in db.php also)
+* Remove for example the following code in header in checkout.php:
 
 ```
 htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
