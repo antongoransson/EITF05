@@ -44,15 +44,24 @@ class DB {
       }
     }
   }
-  function getOrders($username) {
-    $statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
-    $statement->bindValue(':username', $username, \PDO::PARAM_STR);
-    $ret = $statement->execute();
-    $items = array();
 
-    while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
-      $items[]=$row;
-    }
+	// a' OR 'x'='x
+  function getOrders($username) {
+		$items = array();
+
+		$sql= "SELECT * from Orders where username='$username'";
+		$ret= $this->pdo->query($sql);
+		foreach ($ret as $row) {
+			$items[]=$row;
+		}
+
+    // $statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
+    // $statement->bindValue(':username', $username, \PDO::PARAM_STR);
+    // $ret = $statement->execute();
+    // while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+    //   $items[]=$row;
+    // }
+
     return $items;
   }
 
@@ -109,7 +118,7 @@ class DB {
     $statement->bindValue(':username', $username);
     $response = $statement->execute();
     if($response) {
-    $user = $statement->fetch(\PDO::FETCH_ASSOC);
+    	$user = $statement->fetch(\PDO::FETCH_ASSOC);
       if(is_array($user)){
         if($user['username'] == $username && password_verify($password, $user['pwhash']))
           return true;

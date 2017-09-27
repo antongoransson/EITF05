@@ -41,4 +41,5 @@ CREATE TABLE Orders (
 INSERT INTO Items(name, price)
 VALUES( "Lycka", 50),
 ( "Déjà vu", 100),
-( "Sömn", 150);
+( "Sömn", 150),
+( "Transformation", 450);

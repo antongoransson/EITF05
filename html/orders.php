@@ -16,11 +16,11 @@
   </head>
   <div style=margin-top:60px;overflow-y:scroll;height:90%;>
     <?php if (count($items) > 0):
-       echo "<table><tr><th>Vara</th>
+       echo "<table><tr><th>Vara</th><th>Kund</th>
        <th>Antal</th><th>Tidpunkt</th><th>Kostnad</th></tr>";
 
       function printCostRow($price, $row){
-        echo "<tr><td><b>Total Kostnad: ".$price. "</b></td><td></td><td></td><td></td></tr>";
+        echo "<tr><td><b>Total Kostnad: ".$price. "</b></td><td></td><td></td><td></td><td></td></tr>";
       }
       $first = true;
       $price = 0;
@@ -38,6 +38,7 @@
         $ctr++;
         $price += $db->getItemPrice($row["itemid"])*$row["nbrofitems"];
         echo "<tr><td>".$db->getItemName($row["itemid"])."</td>
+				<td>".$row["username"]."</td>
         <td>".$row["nbrofitems"]."</td><td>".$row["timedate"]."</td>
         <td>".$db->getItemPrice($row["itemid"])*$row["nbrofitems"]."</td></tr>";
         if($ctr == count($items)){

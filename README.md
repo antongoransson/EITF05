@@ -3,6 +3,33 @@ Projekt i Webbsäkerhet EITF05
 
 * Put env.php file in folder outside of html folder with url to db
 
+# Perfom SQL-injection
+
+* Register user with a username such as: a' OR 'x'='x
+* Change putOrders($username) in html/sql/db.php
+* Add:
+
+```
+$sql= "SELECT * from Orders where username='$username'";
+$ret= $this->pdo->query($sql);
+foreach ($ret as $row) {
+	$items[]=$row;
+}
+
+```
+* Remove:
+
+```
+$statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
+$statement->bindValue(':username', $username, \PDO::PARAM_STR);
+$ret = $statement->execute();
+while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
+ $items[]=$row;
+}
+```
+
+* Now go to "Beställingar" and see what everybody has ordered!
+
 # Setup SSL
 
 * Enable rewrite and ssl mod
