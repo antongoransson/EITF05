@@ -51,7 +51,7 @@ htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
 
 * Now enter the checkout page and see what happens! (spooky)
 
-# CSFR attack
+# CSRF Attack
 
 * Remove csrf_check($\_POST['csrf']) in index.php and receipt.php
 
