@@ -45,7 +45,6 @@ class DB {
     }
   }
 
-	// a' OR 'x'='x
   function getOrders($username) {
 		$items = array();
 

