@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'csrf.php';
 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
   echo "<script> window.location = 'index.php'; </script>";
  ?>
@@ -14,6 +15,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 				<label>Username:</label><input type="text" name="username"><br>
 				<label>Password:</label><input type="password" name="password"><br>
 				<label>Address:</label><input type="text" name="address"><br>
+				<?php echo csrf_input_tag(); ?>
 				<input type="submit" value= "Register" >
 			</form>
 			<form >
@@ -28,7 +30,7 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
 			"superman", "trustno1", "michelle", "sunshine",
 			"computer", "corvette", "iloveyou", "maverick"
 		);
-		if ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='') {
+		if ($_POST['username'] !='' && $_POST['password'] !='' && $_POST['address'] !='' && csrf_check($_POST['csrf'])) {
 			$minpasslength = 7;
 			if (strlen($_POST['password']) < $minpasslength || strlen($_POST['password']) >=160 ){
 				echo "Password must be at least ".$minpasslength." characters long.";
