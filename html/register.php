@@ -42,7 +42,9 @@ include 'navbar.php';
   				$error = "The password is too weak.";
   			} elseif ($_POST['password'] == $_POST['username']) {
   				$error = "Your password can't be your username.";
-  			} else {
+  			} elseif ((!(preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $_POST['password']))){
+				$error = "Password must contain letters and numbers.";
+			}else {
   				$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
   				$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
   				if($registered){
