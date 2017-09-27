@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'connect.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['cart']))
 	echo "<script> window.location = 'index.php'; </script>";
 ?>
 
@@ -11,7 +11,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
 </head>
 <body>
 	<section>
-	<form id=payment action="receipt.php" method="post">
+	<form action="receipt.php" method="post">
 		<h1> Betalningsinformation för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
 			<label for=email>Email:</label><br>
@@ -48,6 +48,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
 				<br>
 				<label for=cardname>Namn på kortet</label><br>
 				<input id=cardname name=cardname placeholder="Sam Morris" required /> <br>
+				<input type=hidden name=payment value="val"/> <br>
 		</fieldset>
 		<fieldset >
 			<form action='receipt.php'>

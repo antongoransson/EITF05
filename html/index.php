@@ -30,16 +30,15 @@ include 'navbar.php';
          height= 150 width= 200 align= left vspace= 25px style=margin-left:7px;/>
         <div class="form">
           <h1><?= $row['name'] ?></h1>
-          <form class="item" <?php echo $row["itemid"]; ?> method="post">
+          <form class="item" <?= $row["itemid"]; ?> method="post">
             <h2>Pris: <?=$row['price']?> kr</h2>
-		        <input type="hidden" name="hidden_price" value="<?php echo $row['price']; ?>">
   			    <select name=nbrOfItems>
               <?php for ($i = 1; $i <= 10; $i++) { ?>
                 <option value=<?= $i ?>><?= $i ?></option>
               <?php } ?>
             </select>
-            <?php
-            echo '<input type=hidden name= itemid value='.$row["itemid"].'>';
+            <?=
+             '<input type=hidden name= itemid value='.$row["itemid"].'>';
             ?>
             <button type="add" name="add">Lägg till i kundvagn</button>
           </form>

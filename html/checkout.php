@@ -66,14 +66,14 @@
 			if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
 		?>
 			<form action=payment.php>
-				<button type="submit" class="btn btn-default">Till betalning</button>
+				<button type="submit" class="checkoutbtn">Till betalning</button>
 			</form>
 		<?php
 	} else {
 		?>
 		<button
 			type="submit"
-			class="btn btn-default"
+			class="checkoutbtn"
 			title="Var vänlig logga in eller lägg till varor för att betala"
 		 	disabled >Till betalning
 		</button>
