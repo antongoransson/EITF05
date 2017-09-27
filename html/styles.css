@@ -1,6 +1,6 @@
 body{
   margin-left:0;
-  background-color: #e6e6e6
+  background-color: #e6e6e6;
 }
 h1.title {
   color: #d54d7b;
@@ -22,7 +22,7 @@ div.shopitem {
   margin-left: 8px;
   text-align: center;
   border-radius: 5px;
-  background-color: #ff8c1a;
+  background-color: #fff;
 }
 div.form {
   float:right;
