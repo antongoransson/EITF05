@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'csrf.php';
 require_once 'connect.php';
 ?>
 <html>
@@ -16,7 +17,7 @@ require_once 'connect.php';
        else
         $items= $db->getItems();
 
-      if(isset($_POST["nbrOfItems"]) && $_POST["nbrOfItems"] > 0){
+      if(isset($_POST["nbrOfItems"]) && $_POST["nbrOfItems"] > 0 && csrf_check($_POST['csrf'])){
        	$_SESSION["cart"][$_POST["itemid"]] += $_POST["nbrOfItems"];
         $_POST["nbrOfItems"] = 0;
       }
@@ -40,6 +41,7 @@ require_once 'connect.php';
             </select>
             <?php
             echo '<input type=hidden name= itemid value='.$row["itemid"].'>';
+            echo csrf_input_tag();
             ?>
             <input type="submit" name="add" class="btn btn-default" value="Lägg till i kundvagn">
           </form>
