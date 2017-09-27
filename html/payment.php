@@ -1,7 +1,8 @@
 <?php
 session_start();
-include 'connect.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
+require_once 'csrf.php';
+require_once 'connect.php';
+if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET['csrf']))
 	echo "<script> window.location = 'index.php'; </script>";
 ?>
 

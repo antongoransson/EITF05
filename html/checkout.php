@@ -1,7 +1,8 @@
 <?php
-	session_start();
-	require'connect.php';
-	include 'navbar.php'
+session_start();
+require_once 'csrf.php';
+require_once 'connect.php';
+require_once 'navbar.php';
 ?>
 <html>
 	<head>
@@ -45,6 +46,7 @@
 				<form action="shop.php" method="post">
 					<input type="hidden" name="itemid" value="<?= $id; ?>">
 					<input type="submit" name="delete" value="Ta bort" />
+					<?php echo csrf_input_tag();?>
 				</form>
 			</td>
 		</tr>
@@ -66,6 +68,7 @@
 			?>
 			<form action=payment.php>
 				<button type="submit" class="btn btn-default">Till betalning</button>
+				<?php echo csrf_input_tag();?>
 			</form>
 		<?php
 	} else {
