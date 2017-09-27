@@ -30,6 +30,16 @@ while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
 
 * Now go to "Beställingar" and see what everybody has ordered!
 
+# CSFR attack
+
+* Remove csrf_check($\_POST['csrf']) in index.php and receipt.php
+
+* Create website that adds items to cart through form and visits receipt.php (https://antongoransson.github.io does this to https://localhost)
+
+* Open a tab of the shop and login, now visit your hacker-site
+
+* Go to "Beställningar" and see some weird orders that you didn't do! (spooky)
+
 # Setup SSL
 
 * Enable rewrite and ssl mod

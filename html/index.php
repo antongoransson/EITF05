@@ -30,7 +30,7 @@ include 'navbar.php';
         <img src="images/<?=$row["name"]?>.jpg" alt="INSERT PIC HERE"
          height= 150 width= 200 align= left vspace= 25px style=margin-left:7px;/>
         <div class="form">
-          <h1><?= $row['name'] ?></h1>
+					<h1><?=$row['name']?></h1>
           <form class="item" <?= $row["itemid"]; ?> method="post">
             <h2>Pris: <?=$row['price']?> kr</h2>
   			    <select name=nbrOfItems>
