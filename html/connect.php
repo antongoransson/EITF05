@@ -1,6 +1,5 @@
 <?php
-  require 'vendor/autoload.php';
-  use SQL\MySQLConnection;
-  use SQL\db;
+  require_once dirname('./').'/sql/MySQLConnection.php';
+  require_once dirname('./').'/sql/db.php';
   $db = new DB((new MySQLConnection())->connect());
 ?>

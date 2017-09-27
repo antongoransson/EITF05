@@ -1,8 +1,9 @@
 <?php
 session_start();
+require'connect.php';
+$currpage = "checkout.php";
+include 'navbar.php';
 require_once 'csrf.php';
-require_once 'connect.php';
-require_once 'navbar.php';
 ?>
 <html>
 	<head>
@@ -16,13 +17,13 @@ require_once 'navbar.php';
 		 ?>
 	 </h1>
 		<br><br>
-		<table style="width:100%">
+		<table >
 			<tr>
 				<th>Produkt</th>
 				<th>Antal</th>
 				<th>Pris</th>
 				<th>Total</th>
-				<th>Ta bort</th>
+				<th></th>
 			</tr>
 		<?php
 			if(!empty($_SESSION["cart"])){
@@ -45,8 +46,8 @@ require_once 'navbar.php';
 			<td>
 				<form action="shop.php" method="post">
 					<input type="hidden" name="itemid" value="<?= $id; ?>">
-					<input type="submit" name="delete" value="Ta bort" />
 					<?php echo csrf_input_tag();?>
+					<button type="remove" name="delete" value="Ta bort">Ta bort </button>
 				</form>
 			</td>
 		</tr>
@@ -64,8 +65,8 @@ require_once 'navbar.php';
 		</table>
 		<br>
 		<?php
-		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
-			?>
+			if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
+		?>
 			<form action=payment.php>
 				<button type="submit" class="btn btn-default">Till betalning</button>
 				<?php echo csrf_input_tag();?>

@@ -3,6 +3,7 @@ session_start();
 include 'connect.php';
 if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
   echo "<script> window.location = 'index.php'; </script>";
+$currpage = "receipt.php";
 include 'navbar.php'
 ?>
 <html>

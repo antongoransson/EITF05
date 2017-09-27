@@ -1,6 +1,4 @@
 <?php
-namespace SQL;
-
 
 class DB {
   private $pdo;
@@ -80,6 +78,9 @@ class DB {
 
   function addUser($username, $pwhash, $address) {
     $userStatement = $this->pdo->prepare("SELECT * FROM Users WHERE username=:username;");
+    $username =  htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+    $pwhash = htmlspecialchars($pwhash, ENT_QUOTES, 'UTF-8');
+    $address = htmlspecialchars($address, ENT_QUOTES, 'UTF-8');
     $userStatement->bindValue(':username', $username);
     $response = $userStatement->execute();
     if($response) {

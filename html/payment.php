@@ -13,7 +13,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_GET[
 <body>
 	<section>
 	<form id=payment action="receipt.php" method="post">
-		<h1> Betalningsinformation för <?php echo htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
+		<h1> Betalningsinformation för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
 			<label for=email>Email:</label><br>
 			<input id=email name=email type=email placeholder="example@domain.com" required />	<br>
