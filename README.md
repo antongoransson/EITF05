@@ -5,7 +5,7 @@ Projekt i Webbsäkerhet EITF05
 
 # Perfom SQL-injection
 
-* Register user with a username such as: a' OR 'x'='x
+* Register user with a username such as: a' OR 'x'='x (including the apostrophes)
 * Change putOrders($username) in html/sql/db.php
 * Add:
 
