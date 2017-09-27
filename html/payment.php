@@ -54,10 +54,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['
 		</fieldset>
 		<fieldset >
 			<button type=submit>Betala</button>
-			<form action='index.php'style=display:inline-block;>
-				<button type=submit>Avbryt</button>
-			</form>
-
+			<button type=button onclick=history.back()>Avbryt</button>
 		</fieldset>
 	</form>
 	</section>
