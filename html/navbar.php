@@ -30,7 +30,7 @@
     .active {
         background-color: #3399ff;
     }
-    .loginname{
+    .loginname, .title {
       float:left;
     }
     p {
@@ -40,6 +40,12 @@
       padding: 10px 12px;
       margin:0;
     }
+		h4 {
+			color:#ccc;
+			font-size:23px;
+      margin:0;
+      padding: 10px 12px;
+		}
   </style>
 <ul class="list">
   <?php
@@ -64,4 +70,9 @@
         return "class = active";
     }
   ?>
+		<li class=title>
+			<h4>
+				Noneuclidian Store - <i>Your one stop shop for abstract concepts!</i>
+			</h4>
+		</li>
 </ul>
