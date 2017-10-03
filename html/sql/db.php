@@ -124,5 +124,33 @@ class DB {
       return false;
     }
   }
+	function getReviews(){
+		$sql= "SELECT * from Reviews";
+		$ret= $this->pdo->query($sql);
+		$items=[];
+		foreach ($ret as $row) {
+			$items[]=$row;
+		}
+		return $items;
+	}
+	function putReview($username, $subject, $comment){
+    $username =  htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
+    $subject = htmlspecialchars($subject, ENT_QUOTES, 'UTF-8');
+    $comment = htmlspecialchars($comment, ENT_QUOTES, 'UTF-8');
+    $statement = $this->pdo->prepare("INSERT INTO Reviews(username, timedate, subject, comment)
+      VALUES(:username, :timedate, :subject,:comment)");
+    $ret = $statement->execute(array(
+      ':username' => $username,
+			':timedate'=> date('Y-m-d H:i:s'),
+      ':subject' => $subject,
+      ':comment' => $comment
+    ));
+    if(!$ret) {
+      echo "\nPDO::errorInfo():\n";
+      print_r($statement->errorInfo());
+      return false;
+    } else {
+    	return true;
+    }
  }
-?>
+ }

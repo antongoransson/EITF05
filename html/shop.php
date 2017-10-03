@@ -10,5 +10,5 @@ if (isset($_POST["delete"])) {
 		}
 	}
 
-	echo '<script>window.location="checkout.php"</script>';
+	echo '<script>window.location="checkout"</script>';
 }

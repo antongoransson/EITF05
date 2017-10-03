@@ -2,8 +2,8 @@
 session_start();
 include 'connect.php';
 require_once 'csrf.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !csrf_check($_POST['csrf']))
-  echo "<script> window.location = 'index.php'; </script>";
+if(!isset($_SESSION['username']) || !csrf_check($_POST['csrf']))
+  echo "<script> window.location = 'index'; </script>";
 else {
   $currpage = "receipt.php";
   include 'navbar.php';

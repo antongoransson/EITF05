@@ -2,8 +2,8 @@
 session_start();
 require_once 'csrf.php';
 $currpage='login.php';
-if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
-  echo "<script> window.location = 'index.php'; </script>";
+if(isset($_SESSION['username']))
+  echo "<script> window.location = 'index'; </script>";
  ?>
 <html>
   <head>
@@ -33,9 +33,8 @@ if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
           if($authenticated) {
             echo "Login was successful you will be redirected shortly";
             session_regenerate_id();
-            $_SESSION["loggedIn"] = true;
             $_SESSION["username"] = $_POST['username'];
-            header("Location:index.php");
+            header("Location:index");
           } else
             echo "Invalid username or password";
         }

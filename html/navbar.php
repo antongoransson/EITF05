@@ -8,6 +8,7 @@
       padding: 0;
       overflow: hidden;
       background-color: #333;
+			z-index: 2;
     }
 
     li {
@@ -49,16 +50,18 @@
   </style>
 <ul class="list">
   <?php
-   if(!isset($_SESSION['loggedIn']) || !$_SESSION["loggedIn"]):?>
-    <li><a <?= getActive($currpage,"register.php")?> href=register.php>Registrera</a></li>
-    <li><a <?= getActive($currpage,"login.php")?> href=login.php>Logga in</a></li>
-    <li><a <?= getActive($currpage,"checkout.php")?> href="checkout.php">Kundvagn</a></li>
-    <li><a <?= getActive($currpage,"index.php")?> href=index.php>Shop</a></li>
+   if(!isset($_SESSION['username'])):?>
+    <li><a <?= getActive($currpage,"register.php")?> href=/register>Registrera</a></li>
+    <li><a <?= getActive($currpage,"login.php")?> href=/login>Logga in</a></li>
+    <li><a <?= getActive($currpage,"checkout.php")?> href="/checkout">Kundvagn</a></li>
+		<li><a <?= getActive($currpage,"reviews.php")?> href=/reviews>Recensioner</a></li>
+    <li><a <?= getActive($currpage,"index.php")?> href=/index>Shop</a></li>
   <?php elseif(isset($_SESSION['username'])): ?>
-    <li><a href=logoutscript.php>Logga ut</a></li>
-    <li><a <?= getActive($currpage,"orders.php")?> href=orders.php>Beställningar</a></li>
-    <li><a <?= getActive($currpage,"checkout.php")?> href="checkout.php">Kundvagn</a></li>
-    <li><a <?= getActive($currpage,"index.php")?> href=index.php>Shop</a></li>
+    <li><a href=logoutscript>Logga ut</a></li>
+    <li><a <?= getActive($currpage,"orders.php")?> href=/orders>Beställningar</a></li>
+    <li><a <?= getActive($currpage,"checkout.php")?> href="/checkout">Kundvagn</a></li>
+		<li><a <?= getActive($currpage,"reviews.php")?> href=/reviews>Recensioner</a></li>
+    <li><a <?= getActive($currpage,"index.php")?> href=/index>Shop</a></li>
     <li class=loginname>
       <p>
         <?="Inloggad som:<b> ".htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8').'</b>'?>

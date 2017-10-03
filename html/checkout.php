@@ -1,6 +1,6 @@
 <?php
 session_start();
-require'connect.php';
+require 'connect.php';
 $currpage = "checkout.php";
 include 'navbar.php';
 require_once 'csrf.php';
@@ -12,7 +12,7 @@ require_once 'csrf.php';
 	</head>
 	<body style=margin-top:60px>
 		<h1> Checkout<?php
-		if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
+		if (isset($_SESSION['username']))
 		 echo " för ".htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
 		 ?>
 	 </h1>
@@ -44,7 +44,7 @@ require_once 'csrf.php';
 			<td><?= $item_info["price"]; ?> kr</td>
 			<td><?= number_format($amount * $item_info["price"], 2); ?> kr</td>
 			<td>
-				<form action="shop.php" method="post">
+				<form action="shop" method="post">
 					<input type="hidden" name="itemid" value="<?= $id; ?>">
 					<?php echo csrf_input_tag();?>
 					<button type="remove" name="delete" value="Ta bort">Ta bort </button>
@@ -65,9 +65,9 @@ require_once 'csrf.php';
 		</table>
 		<br>
 		<?php
-			if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] && isset($_SESSION['cart'])) {
+			if (isset($_SESSION['username']) && isset($_SESSION['cart'])) {
 		?>
-			<form action=payment.php>
+			<form action=payment>
 				<button type="submit" class="checkoutbtn">Till betalning</button>
 				<?php echo csrf_input_tag();?>
 			</form>

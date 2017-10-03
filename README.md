@@ -34,13 +34,11 @@ while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
 
 * Create a user with username such as:(If it says username already in use, comment the $username line in addUser in db.php)
 ```
-<script>
-document.body.innerHTML=
- '<iframe src="https://antongoransson.github.io"
- width="100%"
- height="90%"
- frameborder="0" />';
-</script>
+<iframe src=https://antongoransson.github.io
+ width=100%
+ height=90%
+ frameborder=0 />;
+
 ```
 * Remove for example the following code in header in checkout.php:
 

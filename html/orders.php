@@ -1,7 +1,7 @@
 <?php
   session_start();
-  if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
-    echo "<script> window.location = 'index.php'; </script>";
+  if(!isset($_SESSION['username']))
+    echo "<script> window.location = 'index'; </script>";
   require 'connect.php';
   $currpage = "orders.php";
   $items = $db->getOrders($_SESSION['username']);

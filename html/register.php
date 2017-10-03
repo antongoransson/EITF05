@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once 'csrf.php';
-if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
-  echo "<script> window.location = 'index.php'; </script>";
+if(isset($_SESSION['username']))
+  echo "<script> window.location = 'index'; </script>";
 $currpage = "register.php";
 include 'navbar.php';
  ?>
@@ -51,9 +51,8 @@ include 'navbar.php';
   				$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
   				if($registered){
             session_regenerate_id();
-            $_SESSION["loggedIn"]=true;
             $_SESSION['username'] = $_POST['username'];
-  					echo "<script> window.location = 'index.php'; </script>";
+  					echo "<script> window.location = 'index'; </script>";
   				} else {
   					$error = "Username already in use";
   				}

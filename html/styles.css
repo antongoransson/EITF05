@@ -13,7 +13,52 @@ h1.title {
   text-shadow: 0 1px 1px #fff;
 
 }
-
+/* ALL CSS INCLUDING REVIEW */
+div.review {
+	width:50%;
+	margin:0 15px 15px 15px;
+	border:5px solid #3399ff;
+  background-color: #bfbfbf;
+	border-radius: 5px;
+	display: inline-block;
+}
+div.reviewheader{
+	border-bottom: 2px solid #ff66cc;
+}
+span.review1 {
+	padding:50px;
+	border:5px solid #3399ff;
+  background-color: #b3b3cc;
+	border-radius: 5px;
+}
+h1.review {
+	margin: 10px 0 10px 10px;
+	width: fit-content;
+	display:inline
+}
+span.review {
+	float:right;
+	margin:0 5px 5px 0;
+}
+span.comment {
+	padding:20px;
+	/*margin: 5px;*/
+	/*border: solid red;*/
+	border-radius: 5px;
+}
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #3399ff;
+	margin-top: 20px;
+  margin-left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+/* CSS INLCUDING SHOPPING ITEM */
 div.shopitem {
   border: 5px solid #3399ff;
   height: 200px;
@@ -127,4 +172,14 @@ tr:nth-child(even){background-color: #f2f2f2}
 th {
     background-color: #3399ff;
     color: white;
+}
+textarea.review {
+		width: 100%; /* Full width */
+		padding: 12px; /* Some padding */
+		border: 1px solid #ccc; /* Gray border */
+		border-radius: 4px; /* Rounded borders */
+		box-sizing: border-box; /* Make sure that padding and width stays in place */
+		margin-top: 6px; /* Add a top margin */
+		margin-bottom: 16px; /* Bottom margin */
+		resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
 }

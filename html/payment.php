@@ -2,8 +2,8 @@
 session_start();
 include 'connect.php';
 require_once 'csrf.php';
-if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
-	echo "<script> window.location = 'index.php'; </script>";
+if(!isset($_SESSION['username']) || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
+	echo "<script> window.location = 'index'; </script>";
 ?>
 
 <html>
@@ -12,7 +12,7 @@ if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'] || !isset($_SESSION['
 </head>
 <body>
 	<section>
-	<form action="receipt.php" method="post">
+	<form action="receipt" method="post">
 		<?php echo csrf_input_tag(); ?>
 		<h1> Betalningsinformation för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
