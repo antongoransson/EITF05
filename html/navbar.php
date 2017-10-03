@@ -58,7 +58,7 @@
     <li><a href=logoutscript.php>Logga ut</a></li>
     <li><a <?= getActive($currpage,"orders.php")?> href=orders.php>Beställningar</a></li>
     <li><a <?= getActive($currpage,"checkout.php")?> href="checkout.php">Kundvagn</a></li>
-    <li><a <?= getActive($currpage,"index.php")?> href=/>Shop</a></li>
+    <li><a <?= getActive($currpage,"index.php")?> href=index.php>Shop</a></li>
     <li class=loginname>
       <p>
         <?="Inloggad som:<b> ".htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8').'</b>'?>

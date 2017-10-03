@@ -112,8 +112,8 @@ else {
             <table>
               <tr>
                 <td>
-                  <?="<b>Namn:</b> ".$_SESSION['username'].'<br>'?>
-                  <?="<b>Address:</b> ".$db->getAddress($_SESSION['username'])?>
+                  <?="<b>Namn:</b> ".htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8').'<br>'?>
+                  <?="<b>Address:</b> ".htmlspecialchars($db->getAddress($_SESSION['username']), ENT_QUOTES, 'UTF-8')?>
                 </td>
                 <td style=text-align:right;>
                   Kvitto #: <?=rand(873,2381)?><br>
