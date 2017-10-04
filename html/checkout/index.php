@@ -2,8 +2,10 @@
 session_start();
 require_once realpath('../csrf.php');
 require realpath('../connect.php');
+
 $currpage = "checkout.php";
 include realpath('../navbar.php');
+include 'shop.php'
 ?>
 <html>
 	<head>
@@ -44,7 +46,7 @@ include realpath('../navbar.php');
 			<td><?= $item_info["price"]; ?> kr</td>
 			<td><?= number_format($amount * $item_info["price"], 2); ?> kr</td>
 			<td>
-				<form action="shop" method="post">
+				<form method="post">
 					<input type="hidden" name="itemid" value="<?= $id; ?>">
 					<?php echo csrf_input_tag();?>
 					<button type="remove" name="delete" value="Ta bort">Ta bort </button>

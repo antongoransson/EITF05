@@ -32,7 +32,8 @@ while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
 
 # XSS Attack
 
-* Create a user with username such as:(If it says username already in use, comment the $username line in addUser in db.php)
+* Create a user, go to reviews page. Comment the $comment line in putReview in db.php then add
+a comment with the following content:
 ```
 <iframe src=https://antongoransson.github.io
  width=100%
@@ -40,14 +41,14 @@ while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
  frameborder=0 />;
 
 ```
-* Remove for example the following code in header in checkout.php:
+* Then remove in reviews/index.php:
 
 ```
-htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8');
+htmlspecialchars($row["comment"], ENT_QUOTES, 'UTF-8');
 ```
-* Replace it with : $\_SESSION["username"]
+* Replace it with : $row["comment"]
 
-* Now enter the checkout page and see what happens! (spooky)
+* Now enter the review page and see what happens! (spooky)
 
 # CSRF Attack
 
