@@ -94,7 +94,7 @@ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ss
 ```
 sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
-* Change the content to
+* Change the content to the following, but replace /yourhtmlpath/html with the path where you have your files.
 
 ```
 <IfModule mod_ssl.c>

@@ -1,18 +1,18 @@
 <?php
   session_start();
+
+	require realpath('../connect.php');
   if(!isset($_SESSION['username']))
     echo "<script> window.location = 'index'; </script>";
-  require 'connect.php';
   $currpage = "orders.php";
+	include realpath('../navbar.php');
   $items = $db->getOrders($_SESSION['username']);
 ?>
 
 <html>
   <head>
     <title>Beställningar</title>
-    <link rel="stylesheet" href="styles.css">
-    <?php include 'navbar.php'
-    ?>
+    <link rel="stylesheet" href="../css/index.css">
   </head>
   <div style=margin-top:60px;overflow-y:scroll;height:90%;>
     <?php if (count($items) > 0):

@@ -1,16 +1,16 @@
 <?php
   session_start();
-  require 'connect.php';
-	require 'csrf.php';
+	require_once realpath('../csrf.php');
+	require realpath('../connect.php');
   $currpage = "reviews.php";
-	include 'navbar.php';
+	include realpath('../navbar.php');
   $reviews = $db->getReviews();
 ?>
 
 <html>
   <head>
     <title>Recensioner</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/index.css">
     <?php
 
 		if(isset($_POST["subject"]) && csrf_check($_POST['csrf'])){

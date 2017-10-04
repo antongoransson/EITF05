@@ -1,14 +1,14 @@
 <?php
-session_start();
-require_once 'csrf.php';
-require_once 'connect.php';
-$currpage = "index.php";
-include 'navbar.php';
+	session_start();
+	require_once 'csrf.php';
+	require_once 'connect.php';
+	$currpage = "index.php";
+	include 'navbar.php';
 ?>
 <html>
 <head>
   <title> Shop </title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/index.css"/>
 </head>
   <body style=margin-top:70px;>
     <?php

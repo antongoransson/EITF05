@@ -1,14 +1,14 @@
 <?php
 session_start();
-require 'connect.php';
+require_once realpath('../csrf.php');
+require realpath('../connect.php');
 $currpage = "checkout.php";
-include 'navbar.php';
-require_once 'csrf.php';
+include realpath('../navbar.php');
 ?>
 <html>
 	<head>
 		<title> Checkout </title>
-	  <link rel="stylesheet" href="styles.css">
+	  <link rel="stylesheet" href="../css/index.css">
 	</head>
 	<body style=margin-top:60px>
 		<h1> Checkout<?php
@@ -67,9 +67,9 @@ require_once 'csrf.php';
 		<?php
 			if (isset($_SESSION['username']) && isset($_SESSION['cart'])) {
 		?>
-			<form action=payment>
+			<form action=../payment>
 				<button type="submit" class="checkoutbtn">Till betalning</button>
-				<?php echo csrf_input_tag();?>
+				<?= csrf_input_tag()?>
 			</form>
 		<?php
 	} else {

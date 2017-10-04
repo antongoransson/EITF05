@@ -1,9 +1,13 @@
 <?php
 session_start();
-include 'connect.php';
-require_once 'csrf.php';
-if(!isset($_SESSION['username']) || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
-	echo "<script> window.location = 'index'; </script>";
+	require_once realpath('../csrf.php');
+	require realpath('../connect.php');
+	if(!isset($_SESSION['username']) || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
+		echo "<script> window.location = '../index'; </script>";
+	if(isset($_POST["csrf"]) && csrf_check($_POST["csrf"])){
+		$_SESSION["payed"] = true;
+		echo "<script> window.location = '../receipt'; </script>";
+	}
 ?>
 
 <html>
@@ -12,8 +16,7 @@ if(!isset($_SESSION['username']) || !isset($_SESSION['cart']) || !csrf_check($_G
 </head>
 <body>
 	<section>
-	<form action="receipt" method="post">
-		<?php echo csrf_input_tag(); ?>
+	<form method=post>
 		<h1> Betalningsinformation för <?= htmlspecialchars($_SESSION["username"], ENT_QUOTES, 'UTF-8')?></h1>
 		<fieldset>
 			<label for=email>Email:</label><br>
@@ -56,6 +59,7 @@ if(!isset($_SESSION['username']) || !isset($_SESSION['cart']) || !csrf_check($_G
 			<button type=submit>Betala</button>
 			<button type=button onclick=history.back()>Avbryt</button>
 		</fieldset>
+		<?= csrf_input_tag() ?>
 	</form>
 	</section>
 

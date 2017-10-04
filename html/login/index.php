@@ -1,16 +1,16 @@
 <?php
 session_start();
-require_once 'csrf.php';
+require_once realpath('../csrf.php');
 $currpage='login.php';
+include realpath('../navbar.php');
 if(isset($_SESSION['username']))
-  echo "<script> window.location = 'index'; </script>";
+  echo "<script> window.location = '../'; </script>";
+require realpath('../connect.php');
  ?>
 <html>
   <head>
     <title> Login </title>
-    <link rel="stylesheet" href="styles.css">
-    <?php include 'navbar.php'
-    ?>
+		<link rel="stylesheet" type=text/css href="../css/index.css">
   </head>
   <body>
       <form class="login" method="post" >
@@ -26,15 +26,13 @@ if(isset($_SESSION['username']))
         </div>
       </form>
       <?php
-        require 'connect.php';
-
         if(isset($_POST["username"]) && isset($_POST["password"]) && csrf_check($_POST['csrf'])){
           $authenticated = $db->authUser($_POST['username'],$_POST['password']);
           if($authenticated) {
             echo "Login was successful you will be redirected shortly";
             session_regenerate_id();
             $_SESSION["username"] = $_POST['username'];
-            header("Location:index");
+            header("Location:/");
           } else
             echo "Invalid username or password";
         }
