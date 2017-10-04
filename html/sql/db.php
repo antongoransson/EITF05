@@ -53,7 +53,6 @@ class DB {
 		// foreach ($ret as $row) {
 		// 	$items[]=$row;
 		// }
-
     $statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
     $statement->bindValue(':username', $username, \PDO::PARAM_STR);
     $ret = $statement->execute();

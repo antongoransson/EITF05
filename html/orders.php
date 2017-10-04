@@ -22,6 +22,7 @@
       function printCostRow($price, $row){
         echo "<tr><td><b>Total Kostnad: ".$price. "</b></td><td></td><td></td><td></td><td></td></tr>";
       }
+
       $first = true;
       $price = 0;
       $ctr = 0;
@@ -38,7 +39,7 @@
         $ctr++;
         $price += $db->getItemPrice($row["itemid"])*$row["nbrofitems"];
         echo "<tr><td>".$db->getItemName($row["itemid"])."</td>
-				<td>".$row["username"]."</td>
+				<td>".htmlspecialchars($row["username"], ENT_QUOTES, 'UTF-8')."</td>
         <td>".$row["nbrofitems"]."</td><td>".$row["timedate"]."</td>
         <td>".$db->getItemPrice($row["itemid"])*$row["nbrofitems"]."</td></tr>";
         if($ctr == count($items)){
