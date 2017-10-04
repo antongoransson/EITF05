@@ -5,9 +5,12 @@ Redirect 404 /sql/
 
 RewriteEngine on
 
-RewriteCond %{HTTPS} !=on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php
+
+# Return 404 if original request is /foo/bar.php
+RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
+RewriteRule .* - [L,R=404]
