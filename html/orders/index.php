@@ -1,18 +1,18 @@
 <?php
   session_start();
-  if(!isset($_SESSION['loggedIn']) || !$_SESSION['loggedIn'])
-    echo "<script> window.location = 'index.php'; </script>";
-  require 'connect.php';
+
+	require realpath('../connect.php');
+  if(!isset($_SESSION['username']))
+    echo "<script> window.location = '../'; </script>";
   $currpage = "orders.php";
+	include realpath('../navbar.php');
   $items = $db->getOrders($_SESSION['username']);
 ?>
 
 <html>
   <head>
     <title>Beställningar</title>
-    <link rel="stylesheet" href="styles.css">
-    <?php include 'navbar.php'
-    ?>
+    <link rel="stylesheet" href="../css/index.css">
   </head>
   <div style=margin-top:60px;overflow-y:scroll;height:90%;>
     <?php if (count($items) > 0):

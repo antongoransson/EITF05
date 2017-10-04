@@ -1,15 +1,15 @@
 <?php
-session_start();
-require_once 'csrf.php';
-if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'])
-  echo "<script> window.location = 'index.php'; </script>";
-$currpage = "register.php";
-include 'navbar.php';
- ?>
+	session_start();
+	require_once realpath('../csrf.php');
+	if(isset($_SESSION['username']))
+	  echo "<script> window.location = '../'; </script>";
+	$currpage = "register.php";
+	include realpath('../navbar.php');
+?>
 <html>
 	<head>
 		<title>Registrering</title>
-		<link rel="stylesheet" href="styles.css">
+		<link rel="stylesheet" href=../css/index.css?/>
 	</head>
 	<body>
 			<form class="login" method="post" >
@@ -27,7 +27,7 @@ include 'navbar.php';
 			</div>
     </form>
 		<?php
-		require 'connect.php';
+		require realpath('../connect.php');
 		$blacklist = array(
 			"password", "12345678", "123456789", "football",
 			"1234567890", "1qaz2wsx", "princess", "qwertyuiop",
@@ -48,7 +48,7 @@ include 'navbar.php';
 					$error = "Password must contain letters and numbers.";
 				} elseif (strlen($_POST['username']) > 50) {
 					$error = "Nice try, but we also check username length serverside.";
-				} elseif (strlen($_POST['username']) > 50) {
+				} elseif (strlen($_POST['address']) > 50) {
 					$error = "Nice try, but we also check address length serverside.";
 				} else {
 						$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
@@ -57,7 +57,7 @@ include 'navbar.php';
 							session_regenerate_id();
 							$_SESSION["loggedIn"]=true;
 							$_SESSION['username'] = $_POST['username'];
-							echo "<script> window.location = 'index.php'; </script>";
+							echo "<script> window.location = '../'; </script>";
 						} else {
 							$error = "Username already in use";
 						}
