@@ -4,7 +4,3 @@ Redirect 404 /connect.php
 Redirect 404 /sql/
 
 Options Indexes FollowSymLinks
-
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

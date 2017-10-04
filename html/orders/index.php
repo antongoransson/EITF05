@@ -3,7 +3,7 @@
 
 	require realpath('../connect.php');
   if(!isset($_SESSION['username']))
-    echo "<script> window.location = 'index'; </script>";
+    echo "<script> window.location = '../'; </script>";
   $currpage = "orders.php";
 	include realpath('../navbar.php');
   $items = $db->getOrders($_SESSION['username']);
