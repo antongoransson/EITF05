@@ -5,6 +5,10 @@ Redirect 404 /sql/
 
 RewriteEngine on
 
+##Force SSL
+
+#Normal way (in case you need to deploy to NON-heroku)
+RewriteCond %{HTTPS} !=on
 #Heroku way
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 
