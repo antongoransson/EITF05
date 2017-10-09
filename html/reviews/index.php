@@ -10,7 +10,7 @@
 <html>
   <head>
     <title>Recensioner</title>
-    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href=../css/index.css >
     <?php
 
 		if(isset($_POST["subject"]) && csrf_check($_POST['csrf'])){
@@ -42,7 +42,7 @@
 					<span class = tip></span>
 						<div class=reviewheader>
 							<h1 class=review>".htmlspecialchars($row["subject"], ENT_QUOTES, 'UTF-8')."</h1>
-							<span style=float:right;>Datum: <b>".$row["timedate"]."</b> \n
+							<span style=float:right;>Datum: <b>".substr($row["timedate"],0,16)."</b> \n
 							<br> Commenter:<b>"
 								.htmlspecialchars($row["username"], ENT_QUOTES, 'UTF-8')."</b></span>
 						</div>

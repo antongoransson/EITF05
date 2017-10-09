@@ -9,7 +9,7 @@
 <html>
 	<head>
 		<title>Registrering</title>
-		<link rel="stylesheet" href=../css/index.css?/>
+		<link rel="stylesheet" href=../css/index.css >
 	</head>
 	<body>
 			<form class="login" method="post" >
