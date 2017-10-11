@@ -3,7 +3,7 @@ session_start();
 	require_once realpath('../csrf.php');
 	require realpath('../connect.php');
 	if(!isset($_SESSION['username']) || !isset($_SESSION['cart']) || !csrf_check($_GET['csrf']))
-		echo "<script> window.location = '../index'; </script>";
+		echo "<script> window.location = '../'; </script>";
 	if(isset($_POST["csrf"]) && csrf_check($_POST["csrf"])){
 		$_SESSION["payed"] = true;
 		echo "<script> window.location = '../receipt'; </script>";
