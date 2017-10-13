@@ -43,7 +43,7 @@
 						<div class=reviewheader>
 							<h1 class=review>".htmlspecialchars($row["subject"], ENT_QUOTES, 'UTF-8')."</h1>
 							<span style=float:right;>Datum: <b>".substr($row["timedate"],0,16)."</b> \n
-							<br> Commenter:<b>"
+							<br> Användare: <b>"
 								.htmlspecialchars($row["username"], ENT_QUOTES, 'UTF-8')."</b></span>
 						</div>
 						<div style=padding:25px;background-color:#d9d9d9>

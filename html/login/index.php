@@ -27,7 +27,7 @@ require realpath('../connect.php');
       </form>
       <?php
         if(isset($_POST["username"]) && isset($_POST["password"]) && csrf_check($_POST['csrf'])){
-          $authenticated = $db->authUser($_POST['username'],$_POST['password']);
+          list($authenticated, $username) = $db->authUser($_POST['username'],$_POST['password']);
           if($authenticated) {
             echo "Login was successful you will be redirected shortly";
             session_regenerate_id();

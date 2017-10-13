@@ -17,10 +17,10 @@
   <div style=margin-top:60px;overflow-y:scroll;height:90%;>
     <?php if (count($items) > 0):
        echo "<table><tr><th>Vara</th><th>Kund</th>
-       <th>Antal</th><th>Tidpunkt</th><th>Kostnad</th></tr>";
+       <th>Antal</th><th>Tidpunkt</th><th>Kostnad(kr)</th></tr>";
 
       function printCostRow($price, $row){
-        echo "<tr><td><b>Total Kostnad: ".$price. "</b></td><td></td><td></td><td></td><td></td></tr>";
+        echo "<tr><td><b>Total Kostnad: ".$price. " kr</b></td><td></td><td></td><td></td><td></td></tr>";
       }
 
       $first = true;

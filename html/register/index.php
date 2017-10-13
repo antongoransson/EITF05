@@ -51,18 +51,18 @@
 				} elseif (strlen($_POST['address']) > 50) {
 					$error = "Nice try, but we also check address length serverside.";
 				} else {
-						$hashedpw = password_hash( $_POST['password'], PASSWORD_DEFAULT);
-						$registered = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
-						if($registered){
-							session_regenerate_id();
-							$_SESSION["loggedIn"]=true;
-							$_SESSION['username'] = $_POST['username'];
-							echo "<script> window.location = '../'; </script>";
-						} else {
-							$error = "Username already in use";
-						}
+					$hashedpw = password_hash($_POST['password'], PASSWORD_DEFAULT);
+					list($registered, $username) = $db->addUser($_POST['username'], $hashedpw, $_POST['address']);
+					if($registered){
+						session_regenerate_id();
+						$_SESSION["loggedIn"] = true;
+						$_SESSION['username'] = $username;
+						echo "<script> window.location = '../'; </script>";
+					} else {
+						$error = "Username already in use";
 					}
-					echo $error;
+				}
+				echo $error;
 				}
     }
 		?>

@@ -58,7 +58,7 @@
   <?php elseif(isset($_SESSION['username'])): ?>
     <li><a href=/logout>Logga ut</a></li>
     <li><a <?= getActive($currpage,"orders.php")?> href=/orders>Beställningar</a></li>
-    <li><a <?= getActive($currpage,"checkout.php")?> href="/checkout">Kundvagn</a></li>
+    <li><a <?= getActive($currpage,"checkout.php")?> href=/checkout>Kundvagn</a></li>
 		<li><a <?= getActive($currpage,"reviews.php")?> href=/reviews>Recensioner</a></li>
     <li><a <?= getActive($currpage,"index.php")?> href=/>Shop</a></li>
     <li class=loginname>

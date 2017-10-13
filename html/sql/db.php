@@ -3,9 +3,9 @@
 class DB {
   private $pdo;
 
-/**
-* connect to the MySQL database
-*/
+  /**
+  * connect to the MySQL database
+  */
   public function __construct($pdo) {
     $this->pdo = $pdo;
   }
@@ -38,8 +38,8 @@ class DB {
           $ret = $statement->execute();
           if(!$ret)
             print_r($statement->errorInfo());
-          else{}
-
+          else{
+          }
         }
       }
     }
@@ -47,19 +47,12 @@ class DB {
 
   function getOrders($username) {
 		$items = array();
-
-		// $sql= "SELECT * from Orders where username='$username'";
-		// $ret= $this->pdo->query($sql);
-		// foreach ($ret as $row) {
-		// 	$items[]=$row;
-		// }
     $statement = $this->pdo->prepare("SELECT * from Orders WHERE username=:username");
     $statement->bindValue(':username', $username, \PDO::PARAM_STR);
     $ret = $statement->execute();
     while($row = $statement->fetch(\PDO::FETCH_ASSOC)) {
       $items[]=$row;
     }
-
     return $items;
   }
 
@@ -99,12 +92,9 @@ class DB {
         ':address' => $address
       ));
       if(!$ret) {
-        // echo "\nPDO::errorInfo():\n";
-        // print_r($statement->errorInfo());
         return false;
       } else {
-
-        return true;
+        return array(true, $username);
       }
     } else {
       return false;
@@ -113,26 +103,29 @@ class DB {
 
   function authUser($username, $password) {
     $statement = $this->pdo->prepare("SELECT * FROM Users WHERE username=:username;");
+    $username = htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
     $statement->bindValue(':username', $username);
     $response = $statement->execute();
     if($response) {
     	$user = $statement->fetch(\PDO::FETCH_ASSOC);
       if(is_array($user)){
         if($user['username'] == $username && password_verify($password, $user['pwhash']))
-          return true;
+          return array(true, $username);
       }
       return false;
     }
+    return false;
   }
+
 	function getReviews(){
 		$sql= "SELECT * from Reviews";
 		$ret= $this->pdo->query($sql);
 		$items=[];
-		foreach ($ret as $row) {
+		foreach ($ret as $row)
 			$items[]=$row;
-		}
 		return $items;
 	}
+
 	function putReview($username, $subject, $comment){
     $username =  htmlspecialchars($username, ENT_QUOTES, 'UTF-8');
     $subject = htmlspecialchars($subject, ENT_QUOTES, 'UTF-8');
@@ -146,11 +139,9 @@ class DB {
       ':comment' => $comment
     ));
     if(!$ret) {
-      echo "\nPDO::errorInfo():\n";
-      print_r($statement->errorInfo());
       return false;
     } else {
     	return true;
     }
- }
+  }
  }

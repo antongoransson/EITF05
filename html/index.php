@@ -14,7 +14,7 @@
     <?php
       if(!$db)
         echo $db->lastErrorMsg();
-       else
+     	else
         $items= $db->getItems();
 
       if(isset($_POST["nbrOfItems"]) && $_POST["nbrOfItems"] > 0 && csrf_check($_POST['csrf'])){
